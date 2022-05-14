@@ -9,4 +9,14 @@
   background-position: center;
   margin-left: auto;
   background-color: transparent;
+  transition: .7s ease;
+}
+
+.gallery__like-btn:hover {
+  opacity: .5;
+  cursor: pointer;
+}
+
+.gallery__like-btn_active {
+  background-image: url(../../../images/like-active.svg);
 }
