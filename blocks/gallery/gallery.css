@@ -4,12 +4,12 @@
 
 @media screen and (max-width: 767px) {
   .gallery {
-    padding: 51px 50px;
+    padding: 51px 50px 0;
   }
 }
 
 @media screen and (max-width: 550px) {
   .gallery {
-    padding: 36px 19px;
+    padding: 36px 19px 0;
   }
 }
