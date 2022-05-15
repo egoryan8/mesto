@@ -8,12 +8,6 @@
   color: #FFFFFF;
 }
 
-/*@media screen and (max-width: 1023px) {
-  .profile__name {
-    font-size: 30px;
-  }
-}*/
-
 @media screen and (max-width: 1023px) {
   .profile__name {
     grid-column: 2;
