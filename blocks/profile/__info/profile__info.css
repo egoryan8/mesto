@@ -3,7 +3,7 @@
   align-self: center;
   grid-template-columns: 1fr 24px;
   column-gap: 18px;
-  row-gap: 10px;
+  row-gap: 16px;
 }
 
 @media screen and (max-width: 1023px) {
@@ -15,7 +15,7 @@
 @media screen and (max-width: 550px) {
   .profile__info {
     grid-template-columns: 18px 1fr 18px;
-    column-gap: 14px;
+    column-gap: 12px;
     row-gap: 12px;
   }
 }

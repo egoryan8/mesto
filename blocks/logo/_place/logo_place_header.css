@@ -1,3 +1,7 @@
+.logo_place_header {
+  display: block;
+}
+
 @media screen and (max-width: 767px) {
   .logo_place_header {
     padding-left: 27px;
