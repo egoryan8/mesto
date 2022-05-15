@@ -11,6 +11,9 @@
   font-size: 14px;
   line-height: 121%;
   color: #000000;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
 }
 
 .form__item:last-of-type {
