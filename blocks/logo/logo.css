@@ -1,9 +1,9 @@
-.logo_place_header {
+.logo {
   display: block;
 }
 
 @media screen and (max-width: 767px) {
-  .logo_place_header {
+  .logo {
     padding-left: 27px;
     width: 104px;
   }

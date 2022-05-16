@@ -12,7 +12,7 @@
 <body class="root">
   <div class="page">
     <header class="header">
-      <a href="#"><img src="./images/logo-header.svg" alt="Лого Место" class="logo logo_place_header"></a>
+      <a href="#"><img src="./images/logo-header.svg" alt="Лого Место" class="logo"></a>
     </header>
     <main class="content">
       <section class="profile">
@@ -22,7 +22,7 @@
           <button type="button" class="profile__edit-btn"></button>
           <p class="profile__status">Исследователь океана</p>
         </div>
-        <button class="profile__add-btn"></button>
+        <button class="profile__add-btn" type="button" aria-label="Добавить фото в профиль"></button>
       </section>
 
       <section class="gallery">
@@ -31,42 +31,42 @@
             <img src="./images/Australia.jpg" alt="Австралия" class="gallery__image">
             <div class="gallery__caption">
               <h2 class="gallery__text">Австралия</h2>
-              <button class="gallery__like-btn"></button>
+              <button class="gallery__like-btn" type="button" aria-label="Поставить лайк"></button>
             </div>
           </li>
           <li class="gallery__grid-item">
             <img src="./images/India.jpg" alt="Индия" class="gallery__image">
             <div class="gallery__caption">
               <h2 class="gallery__text">Индия</h2>
-              <button class="gallery__like-btn"></button>
+              <button class="gallery__like-btn" aria-label="Поставить лайк"></button>
             </div>
           </li>
           <li class="gallery__grid-item">
             <img src="./images/italy.jpg" alt="Италия" class="gallery__image">
             <div class="gallery__caption">
               <h2 class="gallery__text">Италия</h2>
-              <button class="gallery__like-btn"></button>
+              <button class="gallery__like-btn" aria-label="Поставить лайк"></button>
             </div>
           </li>
           <li class="gallery__grid-item">
             <img src="./images/Norway.jpg" alt="Норвегия" class="gallery__image">
             <div class="gallery__caption">
               <h2 class="gallery__text">Норвегия</h2>
-              <button class="gallery__like-btn"></button>
+              <button class="gallery__like-btn" aria-label="Поставить лайк"></button>
             </div>
           </li>
           <li class="gallery__grid-item">
             <img src="./images/Venice.jpg" alt="Венеция" class="gallery__image">
             <div class="gallery__caption">
               <h2 class="gallery__text">Венеция</h2>
-              <button class="gallery__like-btn"></button>
+              <button class="gallery__like-btn" aria-label="Поставить лайк"></button>
             </div>
           </li>
           <li class="gallery__grid-item">
             <img src="./images/Ukraine.jpg" alt="Манявский Водопад" class="gallery__image">
             <div class="gallery__caption">
               <h2 class="gallery__text">Манявский Водопад</h2>
-              <button class="gallery__like-btn"></button>
+              <button class="gallery__like-btn" aria-label="Поставить лайк"></button>
             </div>
           </li>
         </ul>
@@ -85,7 +85,7 @@
           </fieldset>
           <button type="submit" name="profile__save" value="Сохранить" class="form__save-btn">Сохранить</button>
         </form>
-        <button class="popup__close-btn"></button>
+        <button class="popup__close-btn" type="button" aria-label="Закрыть редактирование"></button>
       </div>
     </div>
   </div>

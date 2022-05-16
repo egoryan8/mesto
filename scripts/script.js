@@ -9,6 +9,8 @@ const form = document.querySelector('.form');
 
 function openPopup() {
   popup.classList.add('popup_opened');
+  formName.value = profileName.textContent;
+  formStatus.value = profileStatus.textContent;
 }
 
 function closePopup() {

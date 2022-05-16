@@ -6,20 +6,22 @@
   font-size: 18px;
   line-height: 122%;
   color: #FFFFFF;
-  position: relative;
-  bottom: 4px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  max-width: 336px;
 }
 
 @media screen and (max-width: 1023px) {
   .profile__status {
     grid-column: 2;
     text-align: center;
-    bottom: 0;
   }
 }
 
 @media screen and (max-width: 550px) {
   .profile__status {
     font-size: 14px;
+    max-width: 282px;
   }
 }

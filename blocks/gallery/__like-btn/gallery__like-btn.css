@@ -10,13 +10,10 @@
   margin-left: auto;
   background-color: transparent;
   transition: .7s ease;
+  flex-shrink: 0;
 }
 
 .gallery__like-btn:hover {
   opacity: .5;
   cursor: pointer;
-}
-
-.gallery__like-btn_active {
-  background-image: url(../../../images/like-active.svg);
 }

@@ -6,6 +6,10 @@
   font-size: 42px;
   line-height: 114%;
   color: #FFFFFF;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  max-width: 294px;
 }
 
 @media screen and (max-width: 1023px) {
@@ -18,5 +22,6 @@
 @media screen and (max-width: 550px) {
   .profile__name {
     font-size: 27px;
+    max-width: 189px;
   }
 }
