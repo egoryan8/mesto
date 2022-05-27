@@ -35,3 +35,6 @@
 @import url(../blocks/form/__save-btn/form__save-btn.css);
 @import url(../blocks/form/__field/form__field.css);
 @import url(../blocks/popup/_opened/popup_opened.css);
+
+@import url(../blocks/popup/_edit-ptofile/popup_edit-ptofile.css);
+@import url(../blocks/popup/_add-place/popup_add-place.css);

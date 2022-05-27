@@ -75,7 +75,7 @@
     <footer class="footer">
       <p class="footer__copyright">&copy; 2022 Mesto Russia</p>
     </footer>
-    <div class="popup">
+    <div class="popup popup_edit-ptofile">
       <div class="popup__container">
         <form class="form" name="form" id="form">
           <h3 class="form__title">Редактировать профиль</h3>
@@ -85,7 +85,20 @@
           </fieldset>
           <button type="submit" name="profile__save" value="Сохранить" class="form__save-btn">Сохранить</button>
         </form>
-        <button class="popup__close-btn" type="button" aria-label="Закрыть редактирование"></button>
+        <button class="popup__close-btn popup__close-btn_edit" type="button" aria-label="Закрыть редактирование"></button>
+      </div>
+    </div>
+    <div class="popup popup_add-place">
+      <div class="popup__container">
+        <form class="form" name="form" id="form">
+          <h3 class="form__title">Новое место</h3>
+          <fieldset class="form__field" id="profile__add-place-fields">
+            <input type="text" class="form__item" id="place__name" name="place__name" placeholder="Название" required>
+            <input type="text" class="form__item" id="place__url" name="place__url" placeholder="Ссылка на картинку" required>
+          </fieldset>
+          <button type="submit" name="place__save" value="Сохранить" class="form__save-btn">Сохранить</button>
+        </form>
+        <button class="popup__close-btn popup__close-btn_add" type="button" aria-label="Закрыть добавление"></button>
       </div>
     </div>
   </div>
