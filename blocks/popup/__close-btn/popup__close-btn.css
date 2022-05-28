@@ -8,6 +8,7 @@
   background-color: transparent;
   background-image: url(../../../images/close-btn.svg);
   background-size: contain;
+  background-repeat: no-repeat;
   border: 0;
   cursor: pointer;
   transition: opacity .7s ease;
