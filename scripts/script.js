@@ -35,7 +35,7 @@ function handleFormEditProfileSubmit(evt) {
 const handleLikeButton = event => event.target.classList.toggle('card__like-btn_active');
 const deleteCard = event => event.target.closest('.card').remove();
 
-function addCard(link, name) {
+function createCard(link, name) {
   const cardTemplate = document.querySelector('#card-template').content;
   const card = cardTemplate.querySelector('.card').cloneNode(true);
   const cardImage = card.querySelector('.card__image');
@@ -48,25 +48,26 @@ function addCard(link, name) {
   card.querySelector('.card__delete-btn').addEventListener('click', deleteCard);
   cardImage.addEventListener('click', () => handleClickToOpenCard(link, name));
 
-  return place = card;
+  return card;
 }
 
-function createCard(place, list) {
-  list.prepend(place);
+function addCard(list, link, name) {
+  const card = createCard(link, name);
+  list.prepend(card);
 }
 
 
 initialCards.forEach((element) => {
-  addCard(element.link, element.name);
-  createCard(place, cardsList);
+  createCard(element.link, element.name);
+  addCard(cardsList, element.link, element.name);
 })
 
 //Add a card popup
 
 function handleFormAddPlaceSubmit(evt) {
   evt.preventDefault();
-  addCard(placeInputLink.value, placeInputName.value);
-  createCard(place, cardsList);
+  createCard(placeInputLink.value, placeInputName.value);
+  addCard(cardsList, placeInputLink.value, placeInputName.value);
   formAddPlace.reset();
   closePopup(popupAddPlace);
 }
@@ -92,10 +93,7 @@ formEditProfile.addEventListener('submit', handleFormEditProfileSubmit);
 
 popupAddOpenBtn.addEventListener('click', () => openPopup(popupAddPlace));
 
-popupAddCloseBtn.addEventListener('click', () => {
-  closePopup(popupAddPlace);
-  formAddPlace.reset();
-});
+popupAddCloseBtn.addEventListener('click', () => closePopup(popupAddPlace));
 
 formAddPlace.addEventListener('submit', handleFormAddPlaceSubmit);
 
