@@ -10,7 +10,7 @@
   margin-left: auto;
   background-color: transparent;
   flex-shrink: 0;
-  transition: .4s cubic-bezier(0.82, 1.16, 1, 2.83);
+  transition: opacity .4s;
 }
 
 .gallery__like-btn:hover {
