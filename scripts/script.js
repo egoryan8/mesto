@@ -1,4 +1,4 @@
-const popupEdit = document.querySelector('.popup_edit-ptofile');
+const popupEdit = document.querySelector('.popup_edit-profile');
 const popupEditOpenBtn = document.querySelector('.profile__edit-btn');
 const popupEditCloseBtn = document.querySelector('.popup__close-btn_edit');
 const profileName = document.querySelector('.profile__name');
@@ -10,7 +10,7 @@ const formAddPlace = document.querySelector('.form_add-place');
 const popupAddPlace = document.querySelector('.popup_add-place');
 const popupAddOpenBtn = document.querySelector('.profile__add-btn');
 const popupAddCloseBtn = document.querySelector('.popup__close-btn_add');
-const cardList = document.querySelector('.gallery__grid');
+const cardsList = document.querySelector('.places__cards-list');
 const placeInputName = document.querySelector('#place__name');
 const placeInputLink = document.querySelector('#place__link');
 const popupOpenCard = document.querySelector('.popup_open-card');
@@ -18,102 +18,85 @@ const popupOpenCardCloseBtn = document.querySelector('.popup__close-btn_open-car
 const openedImage = document.querySelector('.popup__image');
 const openedImageCaption = document.querySelector('.popup__image-caption');
 
-const initialCards = [
-  {
-    name: 'Архыз',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
-  },
-  {
-    name: 'Республика Алтай',
-    link: 'https://images.unsplash.com/photo-1582086670462-bd0b47819245?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1332&q=80'
-  },
-  {
-    name: 'Иваново',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg'
-  },
-  {
-    name: 'Камчатка',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg'
-  },
-  {
-    name: 'Холмогорский район',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg'
-  },
-  {
-    name: 'Байкал',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
-  }
-];
-
-function openPopup(popupEl) {popupEl.classList.add('popup_opened')};
-function closePopup(popupEl) {popupEl.classList.remove('popup_opened')};
+const openPopup = popupEl => popupEl.classList.add('popup_opened');
+const closePopup = popupEl => popupEl.classList.remove('popup_opened');
 
 //Edit Profile popup
 
-function formEditSubmitHandler(evt) {
+function handleFormEditProfileSubmit(evt) {
   evt.preventDefault();
   profileName.textContent = profileInputName.value;
   profileStatus.textContent = profileInputStatus.value;
   closePopup(popupEdit);
 }
 
-popupEditOpenBtn.addEventListener('click', () => {
-  openPopup(popupEdit)
-})
-
-popupEditCloseBtn.addEventListener('click', () => {
-  closePopup(popupEdit)
-})
-
-formEditProfile.addEventListener('submit', formEditSubmitHandler);
-
 //Initial fill cards
 
-function likeCard(event) {event.target.classList.toggle('gallery__like-btn_active')};
-function deleteCard(event) {event.target.closest('.gallery__grid-item').remove()};
+const handleLikeButton = event => event.target.classList.toggle('card__like-btn_active');
+const deleteCard = event => event.target.closest('.card').remove();
 
 function addCard(link, name) {
-  const cardTemplate = document.querySelector('#card').content;
-  const card = cardTemplate.querySelector('.gallery__grid-item').cloneNode(true);
-  const cardImage = card.querySelector('.gallery__image');
-  const cardTitle = card.querySelector('.gallery__text');
+  const cardTemplate = document.querySelector('#card-template').content;
+  const card = cardTemplate.querySelector('.card').cloneNode(true);
+  const cardImage = card.querySelector('.card__image');
+  const cardTitle = card.querySelector('.card__title');
 
   cardImage.src = link;
   cardImage.alt = name;
   cardTitle.textContent = name;
-  card.querySelector('.gallery__like-btn').addEventListener('click', likeCard);
-  card.querySelector('.gallery__delete-btn').addEventListener('click', deleteCard);
-  cardImage.addEventListener('click', () => clickCard(link, name));
-  cardList.prepend(card);
+  card.querySelector('.card__like-btn').addEventListener('click', handleLikeButton);
+  card.querySelector('.card__delete-btn').addEventListener('click', deleteCard);
+  cardImage.addEventListener('click', () => handleClickToOpenCard(link, name));
+
+  return place = card;
 }
 
-for (let i = initialCards.length - 1; i >= 0; i--) {
-  addCard(initialCards[i].link, initialCards[i].name);
+function createCard(place, list) {
+  list.prepend(place);
 }
+
+
+initialCards.forEach((element) => {
+  addCard(element.link, element.name);
+  createCard(place, cardsList);
+})
 
 //Add a card popup
 
-function formPlaceSubmitHandler(evt) {
+function handleFormAddPlaceSubmit(evt) {
   evt.preventDefault();
   addCard(placeInputLink.value, placeInputName.value);
-  placeInputName.value = '';
-  placeInputLink.value = '';
+  createCard(place, cardsList);
+  formAddPlace.reset();
   closePopup(popupAddPlace);
 }
 
-popupAddOpenBtn.addEventListener('click', () => openPopup(popupAddPlace));
-
-popupAddCloseBtn.addEventListener('click', () => closePopup(popupAddPlace));
-
-formAddPlace.addEventListener('submit', formPlaceSubmitHandler);
-
 //Open card popup
 
-function clickCard(link, name) {
-  openPopup(popupOpenCard);
+function handleClickToOpenCard(link, name) {
   openedImage.src = link;
   openedImage.alt = name;
   openedImageCaption.textContent = name;
+  openPopup(popupOpenCard);
 }
+
+popupEditOpenBtn.addEventListener('click', () => {
+  profileInputName.value = profileName.textContent;
+  profileInputStatus.value = profileStatus.textContent;
+  openPopup(popupEdit);
+});
+
+popupEditCloseBtn.addEventListener('click', () => closePopup(popupEdit));
+
+formEditProfile.addEventListener('submit', handleFormEditProfileSubmit);
+
+popupAddOpenBtn.addEventListener('click', () => openPopup(popupAddPlace));
+
+popupAddCloseBtn.addEventListener('click', () => {
+  closePopup(popupAddPlace);
+  formAddPlace.reset();
+});
+
+formAddPlace.addEventListener('submit', handleFormAddPlaceSubmit);
 
 popupOpenCardCloseBtn.addEventListener('click', () => closePopup(popupOpenCard));

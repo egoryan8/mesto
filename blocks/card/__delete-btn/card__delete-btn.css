@@ -1,4 +1,4 @@
-.gallery__delete-btn {
+.card__delete-btn {
   background-color: transparent;
   background-image: url(../../../images/Delete-btn.svg);
   background-size: contain;
@@ -15,6 +15,6 @@
   transition: opacity .5s ease;
 }
 
-.gallery__delete-btn:hover {
+.card__delete-btn:hover {
   opacity: .6;
 }

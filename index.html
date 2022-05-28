@@ -25,21 +25,21 @@
         <button class="profile__add-btn" type="button" aria-label="Добавить фото в профиль"></button>
       </section>
 
-      <section class="gallery">
-        <ul class="gallery__grid">
+      <section class="places">
+        <ul class="places__cards-list">
         </ul>
       </section>
     </main>
     <footer class="footer">
       <p class="footer__copyright">&copy; 2022 Mesto Russia</p>
     </footer>
-    <div class="popup popup_edit-ptofile">
+    <div class="popup popup_edit-profile">
       <div class="popup__container">
         <form class="form form_edit-profile" name="form">
           <h3 class="form__title">Редактировать профиль</h3>
           <fieldset class="form__field" id="profile__edit-fields">
-            <input type="text" class="form__item" id="profile__name" name="profile__name" value="Жак-Ив Кусто" required>
-            <input type="text" class="form__item" id="profile__status" name="profile__status" value="Исследователь океана" required>
+            <input type="text" class="form__item" id="profile__name" name="profile__name" required>
+            <input type="text" class="form__item" id="profile__status" name="profile__status" required>
           </fieldset>
           <button type="submit" name="profile__save" value="Сохранить" class="form__save-btn">Сохранить</button>
         </form>
@@ -67,16 +67,17 @@
       </div>
     </div>
   </div>
-  <template id="card">
-    <li class="gallery__grid-item">
-      <img src="./images/Australia.jpg" alt="Австралия" class="gallery__image">
-      <button type="button" class="gallery__delete-btn"></button>
-      <div class="gallery__caption">
-        <h2 class="gallery__text">Австралия</h2>
-        <button class="gallery__like-btn" type="button" aria-label="Поставить лайк"></button>
+  <template id="card-template">
+    <li class="card">
+      <img src="#" alt="#" class="card__image">
+      <button type="button" class="card__delete-btn"></button>
+      <div class="card__title-wrapper">
+        <h2 class="card__title"></h2>
+        <button class="card__like-btn" type="button" aria-label="Поставить лайк"></button>
       </div>
     </li>
   </template>
+  <script src="./scripts/cards.js"></script>
   <script src="./scripts/script.js"></script>
 </body>
 

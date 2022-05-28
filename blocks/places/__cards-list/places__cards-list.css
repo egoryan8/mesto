@@ -1,4 +1,4 @@
-.gallery__grid {
+.places__cards-list {
   max-width: 100%;
   list-style: none;
   padding: 0;
@@ -11,13 +11,13 @@
 }
 
 @media screen and (max-width: 1100px) {
-  .gallery__grid {
+  .places__cards-list {
     grid-template-columns: repeat(2, minmax(282px, 320px));
   }
 }
 
 @media screen and (max-width: 650px) {
-  .gallery__grid {
+  .places__cards-list {
     grid-template-columns: minmax(282px, 320px);
     gap: 20px;
   }

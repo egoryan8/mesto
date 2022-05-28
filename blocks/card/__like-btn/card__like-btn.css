@@ -1,4 +1,4 @@
-.gallery__like-btn {
+.card__like-btn {
   background-image: url(../../../images/like.svg);
   width: 22px;
   height: 19px;
@@ -13,7 +13,7 @@
   transition: opacity .4s;
 }
 
-.gallery__like-btn:hover {
+.card__like-btn:hover {
   opacity: .5;
   cursor: pointer;
 }

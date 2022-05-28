@@ -1,15 +1,15 @@
-.gallery {
+.places {
   padding-top: 51px;
 }
 
 @media screen and (max-width: 767px) {
-  .gallery {
+  .places {
     padding: 51px 50px 0;
   }
 }
 
 @media screen and (max-width: 550px) {
-  .gallery {
+  .places {
     padding: 36px 19px 0;
   }
 }
