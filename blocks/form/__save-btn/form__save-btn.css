@@ -13,7 +13,7 @@
   text-align: center;
   color: #FFFFFF;
   cursor: pointer;
-  transition: .7s ease;
+  transition: opacity .7s ease;
 }
 
 .form__save-btn:hover {

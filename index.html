@@ -35,7 +35,7 @@
     </footer>
     <div class="popup popup_edit-ptofile">
       <div class="popup__container">
-        <form class="form form_edit-profile" name="form" id="form">
+        <form class="form form_edit-profile" name="form">
           <h3 class="form__title">Редактировать профиль</h3>
           <fieldset class="form__field" id="profile__edit-fields">
             <input type="text" class="form__item" id="profile__name" name="profile__name" value="Жак-Ив Кусто" required>
@@ -48,21 +48,29 @@
     </div>
     <div class="popup popup_add-place">
       <div class="popup__container">
-        <form class="form form_add-place" name="form" id="form">
+        <form class="form form_add-place" name="form">
           <h3 class="form__title">Новое место</h3>
           <fieldset class="form__field" id="profile__add-place-fields">
             <input type="text" class="form__item" id="place__name" name="place__name" placeholder="Название" required>
-            <input type="url" class="form__item" id="place__link" name="place__url" placeholder="Ссылка на картинку" required>
+            <input type="url" class="form__item" id="place__link" name="place__link" placeholder="Ссылка на картинку" required>
           </fieldset>
           <button type="submit" name="place__save" value="Сохранить" class="form__save-btn">Сохранить</button>
         </form>
         <button class="popup__close-btn popup__close-btn_add" type="button" aria-label="Закрыть добавление"></button>
       </div>
     </div>
+    <div class="popup popup_open-card">
+      <div class="popup__image-wrapper">
+        <img src="" alt="" class="popup__image">
+        <h3 class="popup__image-caption"></h3>
+        <button class="popup__close-btn popup__close-btn_open-card" type="button" aria-label="Закрыть картинку"></button>
+      </div>
+    </div>
   </div>
   <template id="card">
     <li class="gallery__grid-item">
       <img src="./images/Australia.jpg" alt="Австралия" class="gallery__image">
+      <button type="button" class="gallery__delete-btn"></button>
       <div class="gallery__caption">
         <h2 class="gallery__text">Австралия</h2>
         <button class="gallery__like-btn" type="button" aria-label="Поставить лайк"></button>
