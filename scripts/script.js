@@ -45,8 +45,8 @@ const initialCards = [
   }
 ];
 
-const openPopup = popupEl => popupEl.classList.add('popup_opened');
-const closePopup = popupEl => popupEl.classList.remove('popup_opened');
+function openPopup(popupEl) {popupEl.classList.add('popup_opened')};
+function closePopup(popupEl) {popupEl.classList.remove('popup_opened')};
 
 //Edit Profile popup
 
@@ -69,12 +69,8 @@ formEditProfile.addEventListener('submit', formEditSubmitHandler);
 
 //Initial fill cards
 
-const likeCard = event => event.target.classList.toggle('gallery__like-btn_active');
-const deleteCard = event => event.target.closest('.gallery__grid-item').remove();
-
-for (let i = initialCards.length - 1; i >= 0; i--) {
-  addCard(initialCards[i].link, initialCards[i].name);
-}
+function likeCard(event) {event.target.classList.toggle('gallery__like-btn_active')};
+function deleteCard(event) {event.target.closest('.gallery__grid-item').remove()};
 
 function addCard(link, name) {
   const cardTemplate = document.querySelector('#card').content;
@@ -87,8 +83,12 @@ function addCard(link, name) {
   cardTitle.textContent = name;
   card.querySelector('.gallery__like-btn').addEventListener('click', likeCard);
   card.querySelector('.gallery__delete-btn').addEventListener('click', deleteCard);
-  cardImage.addEventListener('click', () => cardClick(link, name));
+  cardImage.addEventListener('click', () => clickCard(link, name));
   cardList.prepend(card);
+}
+
+for (let i = initialCards.length - 1; i >= 0; i--) {
+  addCard(initialCards[i].link, initialCards[i].name);
 }
 
 //Add a card popup
@@ -109,7 +109,7 @@ formAddPlace.addEventListener('submit', formPlaceSubmitHandler);
 
 //Open card popup
 
-function cardClick(link, name) {
+function clickCard(link, name) {
   openPopup(popupOpenCard);
   openedImage.src = link;
   openedImage.alt = name;
