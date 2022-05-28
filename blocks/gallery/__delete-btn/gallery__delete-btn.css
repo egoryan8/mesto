@@ -1,7 +1,7 @@
 .gallery__delete-btn {
   background-color: transparent;
   background-image: url(../../../images/Delete-btn.svg);
-  background-size: contain;
+  background-size: cover;
   background-repeat: no-repeat;
   border: 0;
   width: 18px;
