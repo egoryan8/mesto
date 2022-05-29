@@ -58,7 +58,6 @@ function addCard(list, link, name) {
 
 
 initialCards.forEach((element) => {
-  createCard(element.link, element.name);
   addCard(cardsList, element.link, element.name);
 })
 
@@ -66,7 +65,6 @@ initialCards.forEach((element) => {
 
 function handleFormAddPlaceSubmit(evt) {
   evt.preventDefault();
-  createCard(placeInputLink.value, placeInputName.value);
   addCard(cardsList, placeInputLink.value, placeInputName.value);
   formAddPlace.reset();
   closePopup(popupAddPlace);
