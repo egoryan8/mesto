@@ -14,7 +14,6 @@ const placeInputLink = document.querySelector('#place__link');
 const popupOpenCard = document.querySelector('.popup_open-card');
 const openedImage = document.querySelector('.popup__image');
 const openedImageCaption = document.querySelector('.popup__image-caption');
-const popupCloseBtns = document.querySelectorAll('.popup__close-btn');
 const popupList = document.querySelectorAll('.popup');
 
 //Close popup when clicked escape
