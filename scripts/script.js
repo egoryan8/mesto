@@ -42,8 +42,14 @@ const openPopup = (popup) => {
 };
 
 const closePopup = (popup) => {
+  const inputList = Array.from(popup.querySelectorAll(config.inputSelector));
+
   popup.classList.remove('popup_opened');
   document.removeEventListener('keydown', handleEscToClosePopup);
+  //Скрываю ошибки перед повторным открытием
+  inputList.forEach((inputElement) => {
+    hideInputError(popup, inputElement, config);
+  });
 };
 
 //Close popup when clicked on overlay or button
@@ -67,7 +73,6 @@ const handleFormEditProfileSubmit = (evt) => {
   profileName.textContent = profileInputName.value;
   profileStatus.textContent = profileInputStatus.value;
   closePopup(popupEdit);
-  // popupEdit.querySelector('.form__save-btn').classList.add('form__save-btn_disabled');
 };
 
 //Initial fill cards
@@ -107,7 +112,6 @@ const handleFormAddPlaceSubmit = (evt) => {
   addCard(cardsList, placeInputLink.value, placeInputName.value);
   formAddPlace.reset();
   closePopup(popupAddPlace);
-  // popupAddPlace.querySelector('.form__save-btn').classList.add('form__save-btn_disabled');
 };
 
 //Open a card popup
