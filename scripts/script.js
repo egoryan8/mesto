@@ -15,9 +15,18 @@ const popupOpenCard = document.querySelector('.popup_open-card');
 const openedImage = document.querySelector('.popup__image');
 const openedImageCaption = document.querySelector('.popup__image-caption');
 const popupCloseBtns = document.querySelectorAll('.popup__close-btn');
+const popupList = document.querySelectorAll('.popup');
 
+//Open and close popup
 const openPopup = (popup) => popup.classList.add('popup_opened');
 const closePopup = (popup) => popup.classList.remove('popup_opened');
+
+//Close popup when clicked on overlay or button
+const handleClickToOverlayOrBtn = function (evt) {
+  if (evt.target === this || evt.target.classList.contains('popup__close-btn')) {
+    closePopup(this);
+  }
+};
 
 //Edit Profile popup
 
@@ -67,7 +76,7 @@ const handleFormAddPlaceSubmit = (evt) => {
   closePopup(popupAddPlace);
 };
 
-//Open card popup
+//Open a card popup
 
 const handleClickToOpenCard = (link, name) => {
   openedImage.src = link;
@@ -76,15 +85,12 @@ const handleClickToOpenCard = (link, name) => {
   openPopup(popupOpenCard);
 };
 
+//Listeners
+
 popupEditOpenBtn.addEventListener('click', () => {
   profileInputName.value = profileName.textContent;
   profileInputStatus.value = profileStatus.textContent;
   openPopup(popupEdit);
-});
-
-popupCloseBtns.forEach((button) => {
-  const popup = button.closest('.popup');
-  button.addEventListener('click', () => closePopup(popup));
 });
 
 popupAddOpenBtn.addEventListener('click', () => openPopup(popupAddPlace));
@@ -92,3 +98,5 @@ popupAddOpenBtn.addEventListener('click', () => openPopup(popupAddPlace));
 formEditProfile.addEventListener('submit', handleFormEditProfileSubmit);
 
 formAddPlace.addEventListener('submit', handleFormAddPlaceSubmit);
+
+popupList.forEach((popupEl) => popupEl.addEventListener('mousedown', handleClickToOverlayOrBtn));
