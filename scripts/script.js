@@ -60,12 +60,6 @@ const handleClickToOverlayOrBtn = function (evt) {
   }
 };
 
-//Set attribute disable to save button
-
-// const setDisableBtn = (buttonEl) => {
-//   buttonEl.classList.add(config.inactiveButtonClass);
-// };
-
 //Edit Profile popup
 
 const handleFormEditProfileSubmit = (evt) => {
