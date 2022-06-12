@@ -20,14 +20,6 @@
   opacity: 0.8;
 }
 
-.form__save-btn:disabled {
-  cursor: not-allowed;
-  background-color: transparent;
-  border: 1px solid #000;
-  color: #000;
-  opacity: 0.2;
-}
-
 @media screen and (max-width: 700px) {
   .form__save-btn {
     margin-top: 45px;

@@ -23,12 +23,12 @@ const setEventListeners = (formElement, config) => {
   const inputList = Array.from(formElement.querySelectorAll(config.inputSelector));
   const buttonElement = formElement.querySelector(config.submitButtonSelector);
 
-  toggleButtonState(inputList, buttonElement);
+  toggleButtonState(inputList, buttonElement, config);
 
   inputList.forEach((inputElement) => {
     inputElement.addEventListener('input', () => {
       checkInputValidity(formElement, inputElement, config);
-      toggleButtonState(inputList, buttonElement);
+      toggleButtonState(inputList, buttonElement, config);
     });
   });
 };
@@ -43,18 +43,10 @@ const enableValidation = (config) => {
 
 const hasInvalidInput = (inputList) => inputList.some((inputEl) => !inputEl.validity.valid);
 
-const toggleButtonState = (inputList, buttonElement) => {
+const toggleButtonState = (inputList, buttonElement, config) => {
   if (hasInvalidInput(inputList)) {
-    buttonElement.setAttribute('disabled', true);
+    buttonElement.classList.add(config.inactiveButtonClass);
   } else {
-    buttonElement.removeAttribute('disabled', true);
+    buttonElement.classList.remove(config.inactiveButtonClass);
   }
 };
-
-enableValidation({
-  formSelector: '.form',
-  inputSelector: '.form__item',
-  submitButtonSelector: '.form__save-btn',
-  inputErrorClass: 'form__item_type_error',
-  errorClass: 'form__item-error_visible',
-});

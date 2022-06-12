@@ -15,6 +15,14 @@ const popupOpenCard = document.querySelector('.popup_open-card');
 const openedImage = document.querySelector('.popup__image');
 const openedImageCaption = document.querySelector('.popup__image-caption');
 const popupsList = document.querySelectorAll('.popup');
+const config = {
+  formSelector: '.form',
+  inputSelector: '.form__item',
+  submitButtonSelector: '.form__save-btn',
+  inputErrorClass: 'form__item_type_error',
+  errorClass: 'form__item-error_visible',
+  inactiveButtonClass: 'form__save-btn_disabled',
+};
 
 //Close popup when clicked escape
 
@@ -29,6 +37,8 @@ const handleEscToClosePopup = (evt) => {
 const openPopup = (popup) => {
   popup.classList.add('popup_opened');
   document.addEventListener('keydown', handleEscToClosePopup);
+  //Проверяю валидны ли формы при открытии попапа и если нет, то кнопка будет не активной
+  setEventListeners(popup, config);
 };
 
 const closePopup = (popup) => {
@@ -46,9 +56,9 @@ const handleClickToOverlayOrBtn = function (evt) {
 
 //Set attribute disable to save button
 
-const setDisableBtn = (buttonEl) => {
-  buttonEl.setAttribute('disabled', true);
-};
+// const setDisableBtn = (buttonEl) => {
+//   buttonEl.classList.add(config.inactiveButtonClass);
+// };
 
 //Edit Profile popup
 
@@ -57,7 +67,7 @@ const handleFormEditProfileSubmit = (evt) => {
   profileName.textContent = profileInputName.value;
   profileStatus.textContent = profileInputStatus.value;
   closePopup(popupEdit);
-  setDisableBtn(popupEdit.querySelector('.form__save-btn'));
+  // popupEdit.querySelector('.form__save-btn').classList.add('form__save-btn_disabled');
 };
 
 //Initial fill cards
@@ -97,7 +107,7 @@ const handleFormAddPlaceSubmit = (evt) => {
   addCard(cardsList, placeInputLink.value, placeInputName.value);
   formAddPlace.reset();
   closePopup(popupAddPlace);
-  setDisableBtn(popupAddPlace.querySelector('.form__save-btn'));
+  // popupAddPlace.querySelector('.form__save-btn').classList.add('form__save-btn_disabled');
 };
 
 //Open a card popup
@@ -124,3 +134,5 @@ formEditProfile.addEventListener('submit', handleFormEditProfileSubmit);
 formAddPlace.addEventListener('submit', handleFormAddPlaceSubmit);
 
 popupsList.forEach((popupEl) => popupEl.addEventListener('mousedown', handleClickToOverlayOrBtn));
+
+enableValidation(config);
