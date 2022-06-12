@@ -14,7 +14,7 @@ const placeInputLink = document.querySelector('#place__link');
 const popupOpenCard = document.querySelector('.popup_open-card');
 const openedImage = document.querySelector('.popup__image');
 const openedImageCaption = document.querySelector('.popup__image-caption');
-const popupList = document.querySelectorAll('.popup');
+const popupsList = document.querySelectorAll('.popup');
 
 //Close popup when clicked escape
 
@@ -123,4 +123,4 @@ formEditProfile.addEventListener('submit', handleFormEditProfileSubmit);
 
 formAddPlace.addEventListener('submit', handleFormAddPlaceSubmit);
 
-popupList.forEach((popupEl) => popupEl.addEventListener('mousedown', handleClickToOverlayOrBtn));
+popupsList.forEach((popupEl) => popupEl.addEventListener('mousedown', handleClickToOverlayOrBtn));
