@@ -50,3 +50,5 @@ const toggleButtonState = (inputList, buttonElement, config) => {
     buttonElement.classList.remove(config.inactiveButtonClass);
   }
 };
+
+enableValidation(config);

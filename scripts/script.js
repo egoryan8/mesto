@@ -134,5 +134,3 @@ formEditProfile.addEventListener('submit', handleFormEditProfileSubmit);
 formAddPlace.addEventListener('submit', handleFormAddPlaceSubmit);
 
 popupsList.forEach((popupEl) => popupEl.addEventListener('mousedown', handleClickToOverlayOrBtn));
-
-enableValidation(config);
