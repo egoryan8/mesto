@@ -17,9 +17,23 @@ const openedImageCaption = document.querySelector('.popup__image-caption');
 const popupCloseBtns = document.querySelectorAll('.popup__close-btn');
 const popupList = document.querySelectorAll('.popup');
 
+//Close popup when clicked escape
+const handleEscToClosePopup = (evt) => {
+  if (evt.key === 'Escape') {
+    closePopup(document.querySelector('.popup_opened'));
+  }
+};
+
 //Open and close popup
-const openPopup = (popup) => popup.classList.add('popup_opened');
-const closePopup = (popup) => popup.classList.remove('popup_opened');
+const openPopup = (popup) => {
+  popup.classList.add('popup_opened');
+  document.addEventListener('keydown', handleEscToClosePopup);
+};
+
+const closePopup = (popup) => {
+  popup.classList.remove('popup_opened');
+  document.removeEventListener('keydown', handleEscToClosePopup);
+};
 
 //Close popup when clicked on overlay or button
 const handleClickToOverlayOrBtn = function (evt) {
@@ -99,4 +113,6 @@ formEditProfile.addEventListener('submit', handleFormEditProfileSubmit);
 
 formAddPlace.addEventListener('submit', handleFormAddPlaceSubmit);
 
-popupList.forEach((popupEl) => popupEl.addEventListener('mousedown', handleClickToOverlayOrBtn));
+popupList.forEach((popupElement) =>
+  popupElement.addEventListener('mousedown', handleClickToOverlayOrBtn),
+);
