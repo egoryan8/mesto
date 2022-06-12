@@ -18,6 +18,7 @@ const popupCloseBtns = document.querySelectorAll('.popup__close-btn');
 const popupList = document.querySelectorAll('.popup');
 
 //Close popup when clicked escape
+
 const handleEscToClosePopup = (evt) => {
   if (evt.key === 'Escape') {
     closePopup(document.querySelector('.popup_opened'));
@@ -25,6 +26,7 @@ const handleEscToClosePopup = (evt) => {
 };
 
 //Open and close popup
+
 const openPopup = (popup) => {
   popup.classList.add('popup_opened');
   document.addEventListener('keydown', handleEscToClosePopup);
@@ -36,10 +38,17 @@ const closePopup = (popup) => {
 };
 
 //Close popup when clicked on overlay or button
+
 const handleClickToOverlayOrBtn = function (evt) {
   if (evt.target === this || evt.target.classList.contains('popup__close-btn')) {
     closePopup(this);
   }
+};
+
+//Set attribute disable to save button
+
+const setDisableBtn = (buttonEl) => {
+  buttonEl.setAttribute('disabled', true);
 };
 
 //Edit Profile popup
@@ -49,6 +58,7 @@ const handleFormEditProfileSubmit = (evt) => {
   profileName.textContent = profileInputName.value;
   profileStatus.textContent = profileInputStatus.value;
   closePopup(popupEdit);
+  setDisableBtn(popupEdit.querySelector('.form__save-btn'));
 };
 
 //Initial fill cards
@@ -88,6 +98,7 @@ const handleFormAddPlaceSubmit = (evt) => {
   addCard(cardsList, placeInputLink.value, placeInputName.value);
   formAddPlace.reset();
   closePopup(popupAddPlace);
+  setDisableBtn(popupAddPlace.querySelector('.form__save-btn'));
 };
 
 //Open a card popup
@@ -99,7 +110,7 @@ const handleClickToOpenCard = (link, name) => {
   openPopup(popupOpenCard);
 };
 
-//Listeners
+//LISTENERS
 
 popupEditOpenBtn.addEventListener('click', () => {
   profileInputName.value = profileName.textContent;
@@ -113,6 +124,4 @@ formEditProfile.addEventListener('submit', handleFormEditProfileSubmit);
 
 formAddPlace.addEventListener('submit', handleFormAddPlaceSubmit);
 
-popupList.forEach((popupElement) =>
-  popupElement.addEventListener('mousedown', handleClickToOverlayOrBtn),
-);
+popupList.forEach((popupEl) => popupEl.addEventListener('mousedown', handleClickToOverlayOrBtn));
