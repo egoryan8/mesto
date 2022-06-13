@@ -37,22 +37,11 @@ const handleEscToClosePopup = (evt) => {
 const openPopup = (popup) => {
   popup.classList.add('popup_opened');
   document.addEventListener('keydown', handleEscToClosePopup);
-  if (popup !== popupOpenCard) setDisableBtn(popup.querySelector('.form__save-btn'), config);
 };
 
 const closePopup = (popup) => {
-  const inputList = Array.from(popup.querySelectorAll(config.inputSelector));
-
   popup.classList.remove('popup_opened');
   document.removeEventListener('keydown', handleEscToClosePopup);
-  if (popup !== popupOpenCard) {
-    //Скрываю ошибки
-    inputList.forEach((inputElement) => {
-      hideInputError(popup, inputElement, config);
-    });
-    //Сбрасываю поля
-    popup.querySelector('.form').reset();
-  }
 };
 
 //Close popup when clicked on overlay or button
@@ -120,16 +109,13 @@ const handleClickToOpenCard = (link, name) => {
   openPopup(popupOpenCard);
 };
 
-//disable and enable buttons
+// clearErrors
 
-const setDisableBtn = (buttonElement, config) => {
-  buttonElement.classList.add(config.inactiveButtonClass);
-  buttonElement.setAttribute('disabled', true);
-};
-
-const setEnableBtn = (buttonElement, config) => {
-  buttonElement.classList.remove(config.inactiveButtonClass);
-  buttonElement.removeAttribute('disabled', true);
+const clearErrors = (popup) => {
+  const inputList = Array.from(popup.querySelectorAll(config.inputSelector));
+  inputList.forEach((inputElement) => {
+    hideInputError(popup, inputElement, config);
+  });
 };
 
 //LISTENERS
@@ -137,10 +123,17 @@ const setEnableBtn = (buttonElement, config) => {
 popupEditOpenBtn.addEventListener('click', () => {
   profileInputName.value = profileName.textContent;
   profileInputStatus.value = profileStatus.textContent;
+  setEnableBtn(formEditProfile.querySelector('.form__save-btn'), config);
+  clearErrors(popupEdit);
   openPopup(popupEdit);
 });
 
-popupAddOpenBtn.addEventListener('click', () => openPopup(popupAddPlace));
+popupAddOpenBtn.addEventListener('click', () => {
+  setDisableBtn(formAddPlace.querySelector('.form__save-btn'), config);
+  clearErrors(popupAddPlace);
+  formAddPlace.reset();
+  openPopup(popupAddPlace);
+});
 
 formEditProfile.addEventListener('submit', handleFormEditProfileSubmit);
 

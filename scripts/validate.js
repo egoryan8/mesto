@@ -1,3 +1,15 @@
+//Disable and enable buttons
+
+const setDisableBtn = (buttonElement, config) => {
+  buttonElement.classList.add(config.inactiveButtonClass);
+  buttonElement.setAttribute('disabled', true);
+};
+
+const setEnableBtn = (buttonElement, config) => {
+  buttonElement.classList.remove(config.inactiveButtonClass);
+  buttonElement.removeAttribute('disabled', true);
+};
+
 const showInputError = (formElement, inputElement, config) => {
   const errorElement = formElement.querySelector(`.${inputElement.id}-input-error`);
   inputElement.classList.add(config.inputErrorClass);
