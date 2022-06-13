@@ -37,8 +37,7 @@ const handleEscToClosePopup = (evt) => {
 const openPopup = (popup) => {
   popup.classList.add('popup_opened');
   document.addEventListener('keydown', handleEscToClosePopup);
-  //Проверяю валидны ли формы при открытии попапа и если нет, то кнопка будет не активной
-  setEventListeners(popup, config);
+  if (popup !== popupOpenCard) setDisableBtn(popup.querySelector('.form__save-btn'), config);
 };
 
 const closePopup = (popup) => {
@@ -46,10 +45,14 @@ const closePopup = (popup) => {
 
   popup.classList.remove('popup_opened');
   document.removeEventListener('keydown', handleEscToClosePopup);
-  //Скрываю ошибки перед повторным открытием
-  inputList.forEach((inputElement) => {
-    hideInputError(popup, inputElement, config);
-  });
+  if (popup !== popupOpenCard) {
+    //Скрываю ошибки
+    inputList.forEach((inputElement) => {
+      hideInputError(popup, inputElement, config);
+    });
+    //Сбрасываю поля
+    popup.querySelector('.form').reset();
+  }
 };
 
 //Close popup when clicked on overlay or button
@@ -115,6 +118,18 @@ const handleClickToOpenCard = (link, name) => {
   openedImage.alt = name;
   openedImageCaption.textContent = name;
   openPopup(popupOpenCard);
+};
+
+//disable and enable buttons
+
+const setDisableBtn = (buttonElement, config) => {
+  buttonElement.classList.add(config.inactiveButtonClass);
+  buttonElement.setAttribute('disabled', true);
+};
+
+const setEnableBtn = (buttonElement, config) => {
+  buttonElement.classList.remove(config.inactiveButtonClass);
+  buttonElement.removeAttribute('disabled', true);
 };
 
 //LISTENERS
