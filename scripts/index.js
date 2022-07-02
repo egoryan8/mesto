@@ -1,3 +1,6 @@
+import initialCards from './InitialCards.js';
+import Card from './Card.js';
+
 const popupEdit = document.querySelector('.popup_edit-profile');
 const popupEditOpenBtn = document.querySelector('.profile__edit-btn');
 const profileName = document.querySelector('.profile__name');
@@ -15,6 +18,7 @@ const popupOpenCard = document.querySelector('.popup_open-card');
 const openedImage = document.querySelector('.popup__image');
 const openedImageCaption = document.querySelector('.popup__image-caption');
 const popupsList = document.querySelectorAll('.popup');
+
 const config = {
   formSelector: '.form',
   inputSelector: '.form__item',
@@ -22,14 +26,6 @@ const config = {
   inputErrorClass: 'form__item_type_error',
   errorClass: 'form__item-error_visible',
   inactiveButtonClass: 'form__save-btn_disabled',
-};
-
-//Close popup when clicked escape
-
-const handleEscToClosePopup = (evt) => {
-  if (evt.key === 'Escape') {
-    closePopup(document.querySelector('.popup_opened'));
-  }
 };
 
 //Open and close popup
@@ -44,7 +40,15 @@ const closePopup = (popup) => {
   document.removeEventListener('keydown', handleEscToClosePopup);
 };
 
-//Close popup when clicked on overlay or button
+//Close popup by escape
+
+const handleEscToClosePopup = (evt) => {
+  if (evt.key === 'Escape') {
+    closePopup(document.querySelector('.popup_opened'));
+  }
+};
+
+//Close popup when clicked on overlay or CloseBtn
 
 const handleClickToOverlayOrBtn = function (evt) {
   if (evt.target === this || evt.target.classList.contains('popup__close-btn')) {
@@ -61,34 +65,34 @@ const handleFormEditProfileSubmit = (evt) => {
   closePopup(popupEdit);
 };
 
-//Initial fill cards
+//Open a card
 
-const handleLikeButton = (event) => event.target.classList.toggle('card__like-btn_active');
-const deleteCard = (event) => event.target.closest('.card').remove();
-
-const createCard = (link, name) => {
-  const cardTemplate = document.querySelector('#card-template').content;
-  const card = cardTemplate.querySelector('.card').cloneNode(true);
-  const cardImage = card.querySelector('.card__image');
-  const cardTitle = card.querySelector('.card__title');
-
-  cardImage.src = link;
-  cardImage.alt = name;
-  cardTitle.textContent = name;
-  card.querySelector('.card__like-btn').addEventListener('click', handleLikeButton);
-  card.querySelector('.card__delete-btn').addEventListener('click', deleteCard);
-  cardImage.addEventListener('click', () => handleClickToOpenCard(link, name));
-
-  return card;
+const handleClickToOpenCard = (link, name) => {
+  openedImage.src = link;
+  openedImage.alt = name;
+  openedImageCaption.textContent = name;
+  openPopup(popupOpenCard);
 };
 
-const addCard = (list, link, name) => {
-  const card = createCard(link, name);
+//Create and add card
+
+const createCard = (cardData) => {
+  const card = new Card(cardData, '#card-template', handleClickToOpenCard);
+
+  const cardElement = card.generateCard();
+
+  return cardElement;
+};
+
+const addCard = (list, card) => {
   list.prepend(card);
 };
 
+//Create and add initialCards
+
 initialCards.forEach((element) => {
-  addCard(cardsList, element.link, element.name);
+  const cardItem = createCard(element);
+  addCard(cardsList, cardItem);
 });
 
 //Add a card popup
@@ -98,15 +102,6 @@ const handleFormAddPlaceSubmit = (evt) => {
   addCard(cardsList, placeInputLink.value, placeInputName.value);
   formAddPlace.reset();
   closePopup(popupAddPlace);
-};
-
-//Open a card popup
-
-const handleClickToOpenCard = (link, name) => {
-  openedImage.src = link;
-  openedImage.alt = name;
-  openedImageCaption.textContent = name;
-  openPopup(popupOpenCard);
 };
 
 // clearErrors
