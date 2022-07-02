@@ -1,6 +1,7 @@
 import initialCards from './InitialCards.js';
 import Card from './Card.js';
 import FormValidator from './FormValidator.js';
+// import FormValidator from './FormValidation1.js';
 
 const popupEdit = document.querySelector('.popup_edit-profile');
 const popupEditOpenBtn = document.querySelector('.profile__edit-btn');
@@ -19,6 +20,7 @@ const popupOpenCard = document.querySelector('.popup_open-card');
 const openedImage = document.querySelector('.popup__image');
 const openedImageCaption = document.querySelector('.popup__image-caption');
 const popupsList = document.querySelectorAll('.popup');
+const formValidators = {};
 
 const config = {
   formSelector: '.form',
@@ -109,18 +111,30 @@ const handleFormAddPlaceSubmit = (evt) => {
   closePopup(popupAddPlace);
 };
 
+// Enable Validation
+
+const activateValidation = () => {
+  const formList = Array.from(document.querySelectorAll(config.formSelector));
+  formList.forEach((formElement) => {
+    const validator = new FormValidator(formElement, config);
+    const formName = formElement.getAttribute('name');
+    formValidators[formName] = validator;
+    validator.enableValidation();
+  });
+};
+
 //LISTENERS
 
 popupEditOpenBtn.addEventListener('click', () => {
   profileInputName.value = profileName.textContent;
   profileInputStatus.value = profileStatus.textContent;
-  editFormValidation.resetValidation();
+  formValidators['edit-profile-form'].resetValidation();
   openPopup(popupEdit);
 });
 
 popupAddOpenBtn.addEventListener('click', () => {
   formAddPlace.reset();
-  addFormValidation.resetValidation();
+  formValidators['add-place-form'].resetValidation();
   openPopup(popupAddPlace);
 });
 
@@ -130,7 +144,4 @@ formAddPlace.addEventListener('submit', handleFormAddPlaceSubmit);
 
 popupsList.forEach((popupEl) => popupEl.addEventListener('mousedown', handleClickToOverlayOrBtn));
 
-const editFormValidation = new FormValidator(formEditProfile, config);
-editFormValidation.enableValidation();
-const addFormValidation = new FormValidator(formAddPlace, config);
-addFormValidation.enableValidation();
+activateValidation();
