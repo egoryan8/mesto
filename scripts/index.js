@@ -54,8 +54,8 @@ const handleEscToClosePopup = (evt) => {
 //Close popup when clicked on overlay or CloseBtn
 
 const handleClickToOverlayOrBtn = function (evt) {
-  if (evt.target === this || evt.target.classList.contains('popup__close-btn')) {
-    closePopup(this);
+  if (evt.target === evt.currentTarget || evt.target.classList.contains('popup__close-btn')) {
+    closePopup(evt.currentTarget);
   }
 };
 
