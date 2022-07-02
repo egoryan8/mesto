@@ -100,8 +100,12 @@ initialCards.forEach((element) => {
 
 const handleFormAddPlaceSubmit = (evt) => {
   evt.preventDefault();
-  addCard(cardsList, placeInputLink.value, placeInputName.value);
-  formAddPlace.reset();
+  const cardData = {
+    name: placeInputName.value,
+    link: placeInputLink.value,
+  };
+  const cardElement = createCard(cardData);
+  addCard(cardsList, cardElement);
   closePopup(popupAddPlace);
 };
 
