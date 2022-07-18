@@ -1,36 +1,8 @@
 import initialCards from './InitialCards.js';
 import Card from './Card.js';
 import FormValidator from './FormValidator.js';
-// import FormValidator from './FormValidation1.js';
 
-const popupEdit = document.querySelector('.popup_edit-profile');
-const popupEditOpenBtn = document.querySelector('.profile__edit-btn');
-const profileName = document.querySelector('.profile__name');
-const profileStatus = document.querySelector('.profile__status');
-const profileInputName = document.querySelector('#profile-name');
-const profileInputStatus = document.querySelector('#profile-status');
-const formEditProfile = document.querySelector('.form_edit-profile');
-const formAddPlace = document.querySelector('.form_add-place');
-const popupAddPlace = document.querySelector('.popup_add-place');
-const popupAddOpenBtn = document.querySelector('.profile__add-btn');
-const cardsList = document.querySelector('.places__cards-list');
-const placeInputName = document.querySelector('#place-name');
-const placeInputLink = document.querySelector('#place-link');
-const popupOpenCard = document.querySelector('.popup_open-card');
-const openedImage = document.querySelector('.popup__image');
-const openedImageCaption = document.querySelector('.popup__image-caption');
-const popupsList = document.querySelectorAll('.popup');
-const formValidators = {};
-
-const config = {
-  formSelector: '.form',
-  inputSelector: '.form__item',
-  submitBtnSelector: '.form__save-btn',
-  inputErrorClass: 'form__item_type_error',
-  errorClass: 'form__item-error_visible',
-  inactiveBtnClass: 'form__save-btn_disabled',
-};
-
+import {} from '../utils/variables.js';
 //Open and close popup
 
 const openPopup = (popup) => {
