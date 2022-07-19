@@ -14,19 +14,15 @@ import {
   profileStatus,
   profileInputName,
   profileInputStatus,
-  formEditProfile,
   formAddPlace,
   popupAddPlace,
   popupAddOpenBtn,
   cardsContainer,
-  placeInputName,
-  placeInputLink,
   popupOpenCard,
-  openedImage,
-  openedImageCaption,
-  popupsList,
   formValidators,
 } from '../utils/constants.js';
+
+//Cards
 
 const handleClickToOpenCard = (title, src) => {
   popupImage.open(title, src);
@@ -40,17 +36,27 @@ const createCard = (cardData) => {
   return cardElement;
 };
 
-const cardsList = new Section(
+const cardsSection = new Section(
   {
     items: initialCards,
     renderer: (cardData) => {
-      cardsList.addItem(createCard(cardData));
+      cardsSection.addItem(createCard(cardData));
     },
   },
   cardsContainer,
 );
 
-cardsList.renderItems();
+cardsSection.renderItems();
+
+const handleFormAddPlaceSubmit = (cardData) => cardsSection.addItem(createCard(cardData));
+
+const popupNewPlace = new PopupWithForm(popupAddPlace, handleFormAddPlaceSubmit);
+popupNewPlace.setEventListeners();
+
+const popupImage = new PopupWithImage(popupOpenCard);
+popupImage.setEventListeners();
+
+//Profile
 
 const profileInfo = new UserInfo({
   profileName: profileName,
@@ -63,25 +69,6 @@ const handleFormProfileSubmit = (userInfo) => {
 
 const popupProfile = new PopupWithForm(popupEdit, handleFormProfileSubmit);
 popupProfile.setEventListeners();
-
-const popupImage = new PopupWithImage(popupOpenCard);
-popupImage.setEventListeners();
-
-const handleFormAddPlaceSubmit = (cardData) => cardsList.addItem(createCard(cardData));
-
-const popupNewPlace = new PopupWithForm(popupAddPlace, handleFormAddPlaceSubmit);
-popupNewPlace.setEventListeners();
-
-// const handleFormAddPlaceSubmit = (evt) => {
-//   evt.preventDefault();
-//   const cardData = {
-//     name: placeInputName.value,
-//     link: placeInputLink.value,
-//   };
-//   const cardElement = createCard(cardData);
-//   addCard(cardsList, cardElement);
-//   closePopup(popupAddPlace);
-// };
 
 // Enable Validation
 
@@ -109,11 +96,5 @@ popupAddOpenBtn.addEventListener('click', () => {
   formValidators['add-place-form'].resetValidation();
   popupNewPlace.open();
 });
-
-// formEditProfile.addEventListener('submit', handleFormProfileSubmit);
-
-// formAddPlace.addEventListener('submit', handleFormAddPlaceSubmit);
-
-// popupsList.forEach((popupEl) => popupEl.addEventListener('mousedown', handleClickToOverlayOrBtn));
 
 activateValidation();

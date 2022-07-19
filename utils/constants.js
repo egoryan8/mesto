@@ -4,17 +4,11 @@ export const profileName = document.querySelector('.profile__name');
 export const profileStatus = document.querySelector('.profile__status');
 export const profileInputName = document.querySelector('#profile-name');
 export const profileInputStatus = document.querySelector('#profile-status');
-export const formEditProfile = document.querySelector('.form_edit-profile');
 export const formAddPlace = document.querySelector('.form_add-place');
 export const popupAddPlace = document.querySelector('.popup_add-place');
 export const popupAddOpenBtn = document.querySelector('.profile__add-btn');
 export const cardsContainer = document.querySelector('.places__cards-list');
-export const placeInputName = document.querySelector('#place-name');
-export const placeInputLink = document.querySelector('#place-link');
 export const popupOpenCard = document.querySelector('.popup_open-card');
-export const openedImage = document.querySelector('.popup__image');
-export const openedImageCaption = document.querySelector('.popup__image-caption');
-export const popupsList = document.querySelectorAll('.popup');
 export const formValidators = {};
 
 export const config = {
