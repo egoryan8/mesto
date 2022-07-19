@@ -1,19 +1,19 @@
 export default class UserInfo {
-  constructor({ nameSelector, statusSelector }) {
-    this._name = document.querySelector(nameSelector);
-    this._status = document.querySelector(statusSelector);
+  constructor({ profileName, profileStatus }) {
+    this._name = profileName;
+    this._status = profileStatus;
   }
 
   getUserInfo() {
     const userInfo = {
-      name: this._name.textContent,
-      status: this._status.textContent,
+      profileName: this._name.textContent,
+      profileStatus: this._status.textContent,
     };
     return userInfo;
   }
 
   setUserInfo(userInfo) {
-    this._name.textContent = userInfo.name;
-    this._status.textContent = userInfo.status;
+    this._name.textContent = userInfo.profileName;
+    this._status.textContent = userInfo.profileStatus;
   }
 }

@@ -1,5 +1,5 @@
-import Card from './Card.js';
-import FormValidator from './FormValidator.js';
+import Card from '../components/Card.js';
+import FormValidator from '../components/FormValidator.js';
 import PopupWithForm from '../components/PopupWithForm.js';
 import PopupWithImage from '../components/PopupWithImage.js';
 import Section from '../components/Section.js';
@@ -28,10 +28,9 @@ import {
   formValidators,
 } from '../utils/constants.js';
 
-const initialCards = new Section({
-  initialCards,
-  renderer: () => {},
-});
+const handleClickToOpenCard = (title, src) => {
+  popupImage.open(title, src);
+};
 
 const createCard = (cardData) => {
   const card = new Card(cardData, '#card-template', handleClickToOpenCard);
@@ -41,16 +40,20 @@ const createCard = (cardData) => {
   return cardElement;
 };
 
-const addCard = (list, card) => {
-  list.prepend(card);
-};
+const initialFillCards = new Section(
+  {
+    items: initialCards,
+    renderer: (cardData) => {
+      const cardElement = createCard(cardData);
+      initialFillCards.addItem(cardElement);
+    },
+  },
+  cardsList,
+);
+
+initialFillCards.renderItems();
 
 //Create and add initialCards
-
-initialCards.forEach((element) => {
-  const cardItem = createCard(element);
-  addCard(cardsList, cardItem);
-});
 
 //Add a card popup
 
@@ -77,13 +80,25 @@ const activateValidation = () => {
   });
 };
 
+const profileInfo = new UserInfo({
+  profileName: profileName,
+  profileStatus: profileStatus,
+});
+
+const handleFormProfileSubmit = (userInfo) => {
+  profileInfo.setUserInfo(userInfo);
+};
+
+const popupProfile = new PopupWithForm(popupEdit, handleFormProfileSubmit);
+popupProfile.setEventListeners();
+
 //LISTENERS
 
 popupEditOpenBtn.addEventListener('click', () => {
   profileInputName.value = profileName.textContent;
   profileInputStatus.value = profileStatus.textContent;
   formValidators['edit-profile-form'].resetValidation();
-  openPopup(popupEdit);
+  popupProfile.open();
 });
 
 popupAddOpenBtn.addEventListener('click', () => {
@@ -92,10 +107,10 @@ popupAddOpenBtn.addEventListener('click', () => {
   openPopup(popupAddPlace);
 });
 
-formEditProfile.addEventListener('submit', handleFormEditProfileSubmit);
+// formEditProfile.addEventListener('submit', handleFormProfileSubmit);
 
-formAddPlace.addEventListener('submit', handleFormAddPlaceSubmit);
+// formAddPlace.addEventListener('submit', handleFormAddPlaceSubmit);
 
-popupsList.forEach((popupEl) => popupEl.addEventListener('mousedown', handleClickToOverlayOrBtn));
+// popupsList.forEach((popupEl) => popupEl.addEventListener('mousedown', handleClickToOverlayOrBtn));
 
 activateValidation();
