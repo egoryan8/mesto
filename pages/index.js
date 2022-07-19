@@ -1,55 +1,37 @@
-import initialCards from './InitialCards.js';
 import Card from './Card.js';
 import FormValidator from './FormValidator.js';
+import PopupWithForm from '../components/PopupWithForm.js';
+import PopupWithImage from '../components/PopupWithImage.js';
+import Section from '../components/Section.js';
+import UserInfo from '../components/UserInfo.js';
 
-import {} from '../utils/variables.js';
-//Open and close popup
+import {
+  initialCards,
+  config,
+  popupEdit,
+  popupEditOpenBtn,
+  profileName,
+  profileStatus,
+  profileInputName,
+  profileInputStatus,
+  formEditProfile,
+  formAddPlace,
+  popupAddPlace,
+  popupAddOpenBtn,
+  cardsList,
+  placeInputName,
+  placeInputLink,
+  popupOpenCard,
+  openedImage,
+  openedImageCaption,
+  popupsList,
+  formValidators,
+} from '../utils/constants.js';
 
-const openPopup = (popup) => {
-  popup.classList.add('popup_opened');
-  document.addEventListener('keydown', handleEscToClosePopup);
-};
-
-const closePopup = (popup) => {
-  popup.classList.remove('popup_opened');
-  document.removeEventListener('keydown', handleEscToClosePopup);
-};
-
-//Close popup by escape
-
-const handleEscToClosePopup = (evt) => {
-  if (evt.key === 'Escape') {
-    closePopup(document.querySelector('.popup_opened'));
-  }
-};
-
-//Close popup when clicked on overlay or CloseBtn
-
-const handleClickToOverlayOrBtn = function (evt) {
-  if (evt.target === evt.currentTarget || evt.target.classList.contains('popup__close-btn')) {
-    closePopup(evt.currentTarget);
-  }
-};
-
-//Edit Profile popup
-
-const handleFormEditProfileSubmit = (evt) => {
-  evt.preventDefault();
-  profileName.textContent = profileInputName.value;
-  profileStatus.textContent = profileInputStatus.value;
-  closePopup(popupEdit);
-};
-
-//Open a card
-
-const handleClickToOpenCard = (link, name) => {
-  openedImage.src = link;
-  openedImage.alt = name;
-  openedImageCaption.textContent = name;
-  openPopup(popupOpenCard);
-};
-
-//Create and add card
+const initialCards = new Section({
+  initialCards,
+  renderer: () => {},
+});
 
 const createCard = (cardData) => {
   const card = new Card(cardData, '#card-template', handleClickToOpenCard);
