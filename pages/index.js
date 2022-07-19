@@ -53,20 +53,31 @@ const initialFillCards = new Section(
 
 initialFillCards.renderItems();
 
-//Create and add initialCards
+const profileInfo = new UserInfo({
+  profileName: profileName,
+  profileStatus: profileStatus,
+});
 
-//Add a card popup
-
-const handleFormAddPlaceSubmit = (evt) => {
-  evt.preventDefault();
-  const cardData = {
-    name: placeInputName.value,
-    link: placeInputLink.value,
-  };
-  const cardElement = createCard(cardData);
-  addCard(cardsList, cardElement);
-  closePopup(popupAddPlace);
+const handleFormProfileSubmit = (userInfo) => {
+  profileInfo.setUserInfo(userInfo);
 };
+
+const popupProfile = new PopupWithForm(popupEdit, handleFormProfileSubmit);
+popupProfile.setEventListeners();
+
+const popupImage = new PopupWithImage(popupOpenCard);
+popupImage.setEventListeners();
+
+// const handleFormAddPlaceSubmit = (evt) => {
+//   evt.preventDefault();
+//   const cardData = {
+//     name: placeInputName.value,
+//     link: placeInputLink.value,
+//   };
+//   const cardElement = createCard(cardData);
+//   addCard(cardsList, cardElement);
+//   closePopup(popupAddPlace);
+// };
 
 // Enable Validation
 
@@ -79,18 +90,6 @@ const activateValidation = () => {
     validator.enableValidation();
   });
 };
-
-const profileInfo = new UserInfo({
-  profileName: profileName,
-  profileStatus: profileStatus,
-});
-
-const handleFormProfileSubmit = (userInfo) => {
-  profileInfo.setUserInfo(userInfo);
-};
-
-const popupProfile = new PopupWithForm(popupEdit, handleFormProfileSubmit);
-popupProfile.setEventListeners();
 
 //LISTENERS
 

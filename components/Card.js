@@ -35,7 +35,7 @@ export default class Card {
     this._deleteBtn = this._element.querySelector('.card__delete-btn');
 
     this._imgElement.addEventListener('click', () => {
-      this._handleClickToOpenCard(this._cardImage, this._cardTitle);
+      this._handleClickToOpenCard(this._cardTitle, this._cardImage);
     });
 
     this._likeBtn.addEventListener('click', () => {
