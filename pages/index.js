@@ -18,7 +18,7 @@ import {
   formAddPlace,
   popupAddPlace,
   popupAddOpenBtn,
-  cardsList,
+  cardsContainer,
   placeInputName,
   placeInputLink,
   popupOpenCard,
@@ -40,18 +40,17 @@ const createCard = (cardData) => {
   return cardElement;
 };
 
-const initialFillCards = new Section(
+const cardsList = new Section(
   {
     items: initialCards,
     renderer: (cardData) => {
-      const cardElement = createCard(cardData);
-      initialFillCards.addItem(cardElement);
+      cardsList.addItem(createCard(cardData));
     },
   },
-  cardsList,
+  cardsContainer,
 );
 
-initialFillCards.renderItems();
+cardsList.renderItems();
 
 const profileInfo = new UserInfo({
   profileName: profileName,
@@ -67,6 +66,11 @@ popupProfile.setEventListeners();
 
 const popupImage = new PopupWithImage(popupOpenCard);
 popupImage.setEventListeners();
+
+const handleFormAddPlaceSubmit = (cardData) => cardsList.addItem(createCard(cardData));
+
+const popupNewPlace = new PopupWithForm(popupAddPlace, handleFormAddPlaceSubmit);
+popupNewPlace.setEventListeners();
 
 // const handleFormAddPlaceSubmit = (evt) => {
 //   evt.preventDefault();
@@ -103,7 +107,7 @@ popupEditOpenBtn.addEventListener('click', () => {
 popupAddOpenBtn.addEventListener('click', () => {
   formAddPlace.reset();
   formValidators['add-place-form'].resetValidation();
-  openPopup(popupAddPlace);
+  popupNewPlace.open();
 });
 
 // formEditProfile.addEventListener('submit', handleFormProfileSubmit);
