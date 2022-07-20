@@ -40,7 +40,6 @@ const createCard = (cardData) => {
 
 const cardsSection = new Section(
   {
-    items: initialCards,
     renderer: (cardData) => {
       cardsSection.addItem(createCard(cardData));
     },
@@ -48,9 +47,12 @@ const cardsSection = new Section(
   cardsContainer,
 );
 
-cardsSection.renderItems();
+cardsSection.renderItems(initialCards);
 
-const handleFormAddPlaceSubmit = (cardData) => cardsSection.addItem(createCard(cardData));
+const handleFormAddPlaceSubmit = (cardData) => {
+  cardsSection.addItem(createCard(cardData));
+  popupNewPlace.close();
+};
 
 const popupNewPlace = new PopupWithForm(popupAddPlace, handleFormAddPlaceSubmit);
 popupNewPlace.setEventListeners();
@@ -67,6 +69,7 @@ const profileInfo = new UserInfo({
 
 const handleFormProfileSubmit = (userInfo) => {
   profileInfo.setUserInfo(userInfo);
+  popupProfile.close();
 };
 
 const popupProfile = new PopupWithForm(popupEdit, handleFormProfileSubmit);

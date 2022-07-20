@@ -4,10 +4,10 @@ export default class FormValidator {
     this._inputSelector = config.inputSelector;
     this._inputErrorClass = config.inputErrorClass;
     this._errorClass = config.errorClass;
-    this._submitBtnSelector = config.submitBtnSelector;
-    this._inactiveBtnClass = config.inactiveBtnClass;
+    this._submitButtonSelector = config.submitBtnSelector;
+    this._inactiveButtonClass = config.inactiveBtnClass;
     this._inputList = Array.from(this._form.querySelectorAll(this._inputSelector));
-    this._submitBtnElement = this._form.querySelector(this._submitBtnSelector);
+    this._submitButtonElement = this._form.querySelector(this._submitButtonSelector);
   }
 
   _getErrorElement(inputElement) {
@@ -55,11 +55,11 @@ export default class FormValidator {
 
   _toggleButtonState() {
     if (this._hasInvalidInput()) {
-      this._submitBtnElement.classList.add(this._inactiveBtnClass);
-      this._submitBtnElement.setAttribute('disabled', 'true');
+      this._submitButtonElement.classList.add(this._inactiveButtonClass);
+      this._submitButtonElement.setAttribute('disabled', 'true');
     } else {
-      this._submitBtnElement.classList.remove(this._inactiveBtnClass);
-      this._submitBtnElement.removeAttribute('disabled');
+      this._submitButtonElement.classList.remove(this._inactiveButtonClass);
+      this._submitButtonElement.removeAttribute('disabled');
     }
   }
 
