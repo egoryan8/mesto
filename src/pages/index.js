@@ -1,28 +1,27 @@
-import Card from '../components/Card.js';
-import FormValidator from '../components/FormValidator.js';
-import PopupWithForm from '../components/PopupWithForm.js';
-import PopupWithImage from '../components/PopupWithImage.js';
-import Section from '../components/Section.js';
-import UserInfo from '../components/UserInfo.js';
+import Card from "../components/Card.js";
+import FormValidator from "../components/FormValidator.js";
+import PopupWithForm from "../components/PopupWithForm.js";
+import PopupWithImage from "../components/PopupWithImage.js";
+import Section from "../components/Section.js";
+import UserInfo from "../components/UserInfo.js";
 
-import './index.css';
+import "./index.css";
 
 import {
   initialCards,
   config,
   popupEdit,
-  popupEditOpenBtn,
+  popupEditOpenButton,
   profileName,
   profileStatus,
   profileInputName,
   profileInputStatus,
-  formAddPlace,
   popupAddPlace,
-  popupAddOpenBtn,
+  popupAddOpenButton,
   cardsContainer,
   popupOpenCard,
   formValidators,
-} from '../utils/constants.js';
+} from "../utils/constants.js";
 
 //Cards
 
@@ -31,7 +30,7 @@ const handleClickToOpenCard = (title, src) => {
 };
 
 const createCard = (cardData) => {
-  const card = new Card(cardData, '#card-template', handleClickToOpenCard);
+  const card = new Card(cardData, "#card-template", handleClickToOpenCard);
 
   const cardElement = card.generateCard();
 
@@ -44,7 +43,7 @@ const cardsSection = new Section(
       cardsSection.addItem(createCard(cardData));
     },
   },
-  cardsContainer,
+  cardsContainer
 );
 
 cardsSection.renderItems(initialCards);
@@ -54,7 +53,10 @@ const handleFormAddPlaceSubmit = (cardData) => {
   popupNewPlace.close();
 };
 
-const popupNewPlace = new PopupWithForm(popupAddPlace, handleFormAddPlaceSubmit);
+const popupNewPlace = new PopupWithForm(
+  popupAddPlace,
+  handleFormAddPlaceSubmit
+);
 popupNewPlace.setEventListeners();
 
 const popupImage = new PopupWithImage(popupOpenCard);
@@ -81,7 +83,7 @@ const activateValidation = () => {
   const formList = Array.from(document.querySelectorAll(config.formSelector));
   formList.forEach((formElement) => {
     const validator = new FormValidator(formElement, config);
-    const formName = formElement.getAttribute('name');
+    const formName = formElement.getAttribute("name");
     formValidators[formName] = validator;
     validator.enableValidation();
   });
@@ -89,16 +91,16 @@ const activateValidation = () => {
 
 //LISTENERS
 
-popupEditOpenBtn.addEventListener('click', () => {
-  profileInputName.value = profileName.textContent;
-  profileInputStatus.value = profileStatus.textContent;
-  formValidators['edit-profile-form'].resetValidation();
+popupEditOpenButton.addEventListener("click", () => {
+  const { profileName, profileStatus } = profileInfo.getUserInfo();
+  profileInputName.value = profileName;
+  profileInputStatus.value = profileStatus;
+  formValidators["edit-profile-form"].resetValidation();
   popupProfile.open();
 });
 
-popupAddOpenBtn.addEventListener('click', () => {
-  formAddPlace.reset();
-  formValidators['add-place-form'].resetValidation();
+popupAddOpenButton.addEventListener("click", () => {
+  formValidators["add-place-form"].resetValidation();
   popupNewPlace.open();
 });
 
