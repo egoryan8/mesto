@@ -50,3 +50,6 @@
 @import url(../blocks/card/__like-btn/card__like-btn.css);
 @import url(../blocks/card/__like-btn/_active/card__like-btn_active.css);
 @import url(../blocks/card/__like-wrapper/card__like-wrapper.css);
+
+@import url(../blocks/profile/__avatar-edit/profile__avatar-edit.css);
+@import url(../blocks/profile/__avatar-wrapper/profile__avatar-wrapper.css);
