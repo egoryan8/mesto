@@ -1,0 +1,12 @@
+.card__like-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.card__like-wrapper p {
+  margin: 3px 0 0;
+  font-weight: 400;
+  font-size: 13px;
+  line-height: 16px;
+}

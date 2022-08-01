@@ -11,7 +11,10 @@
     <div class="page">
       <header class="header">
         <a href="#"
-          ><img src="<%=require('./images/logo-header.svg') %>" alt="Лого Место" class="logo"
+          ><img
+            src="<%=require('./images/logo-header.svg') %>"
+            alt="Лого Место"
+            class="logo"
         /></a>
       </header>
       <main class="content">
@@ -42,7 +45,11 @@
       </footer>
       <div class="popup popup_edit-profile">
         <div class="popup__container">
-          <form class="form form_edit-profile" name="edit-profile-form" novalidate>
+          <form
+            class="form form_edit-profile"
+            name="edit-profile-form"
+            novalidate
+          >
             <h3 class="form__title">Редактировать профиль</h3>
             <fieldset class="form__set" id="profile__edit-fields">
               <label class="form__field">
@@ -69,10 +76,17 @@
                   minlength="2"
                   maxlength="200"
                 />
-                <span class="form__item-error profile-status-input-error"></span>
+                <span
+                  class="form__item-error profile-status-input-error"
+                ></span>
               </label>
             </fieldset>
-            <button type="submit" name="profile__save" value="Сохранить" class="form__save-btn">
+            <button
+              type="submit"
+              name="profile__save"
+              value="Сохранить"
+              class="form__save-btn"
+            >
               Сохранить
             </button>
           </form>
@@ -113,18 +127,49 @@
                 <span class="form__item-error place-link-input-error"></span>
               </label>
             </fieldset>
-            <button type="submit" name="place__save" value="Сохранить" class="form__save-btn">
+            <button
+              type="submit"
+              name="place__save"
+              value="Сохранить"
+              class="form__save-btn"
+            >
               Сохранить
             </button>
           </form>
-          <button class="popup__close-btn" type="button" aria-label="Закрыть добавление"></button>
+          <button
+            class="popup__close-btn"
+            type="button"
+            aria-label="Закрыть добавление"
+          ></button>
         </div>
       </div>
       <div class="popup popup_open-card">
         <div class="popup__image-wrapper">
           <img src="#" alt="" class="popup__image" />
           <h3 class="popup__image-caption"></h3>
-          <button class="popup__close-btn" type="button" aria-label="Закрыть картинку"></button>
+          <button
+            class="popup__close-btn"
+            type="button"
+            aria-label="Закрыть картинку"
+          ></button>
+        </div>
+      </div>
+      <div class="popup popup_you-sure">
+        <div class="popup__container">
+          <h3 class="popup__title">Вы уверены?</h3>
+          <button
+            type="submit"
+            name="sure__yes"
+            value="Да"
+            class="form__save-btn"
+          >
+            Да
+          </button>
+          <button
+            class="popup__close-btn"
+            type="button"
+            aria-label="Закрыть добавление"
+          ></button>
         </div>
       </div>
     </div>
@@ -134,7 +179,14 @@
         <button type="button" class="card__delete-btn"></button>
         <div class="card__title-wrapper">
           <h2 class="card__title"></h2>
-          <button class="card__like-btn" type="button" aria-label="Поставить лайк"></button>
+          <div class="card__like-wrapper">
+            <button
+              class="card__like-btn"
+              type="button"
+              aria-label="Поставить лайк"
+            ></button>
+            <p class="card__likes-count">1</p>
+          </div>
         </div>
       </li>
     </template>
