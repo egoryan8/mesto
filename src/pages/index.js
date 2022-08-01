@@ -21,6 +21,8 @@ import {
   cardsContainer,
   popupOpenCard,
   formValidators,
+  editAvatarOpenButton,
+  popupEditAvatar,
 } from "../utils/constants.js";
 
 //Cards
@@ -77,6 +79,11 @@ const handleFormProfileSubmit = (userInfo) => {
 const popupProfile = new PopupWithForm(popupEdit, handleFormProfileSubmit);
 popupProfile.setEventListeners();
 
+const handleFormAvatarSubmit = () => {};
+
+const popupAvatar = new PopupWithForm(popupEditAvatar, handleFormAvatarSubmit);
+popupAvatar.setEventListeners();
+
 // Enable Validation
 
 const activateValidation = () => {
@@ -102,6 +109,10 @@ popupEditOpenButton.addEventListener("click", () => {
 popupAddOpenButton.addEventListener("click", () => {
   formValidators["add-place-form"].resetValidation();
   popupNewPlace.open();
+});
+
+editAvatarOpenButton.addEventListener("click", () => {
+  popupAvatar.open();
 });
 
 activateValidation();

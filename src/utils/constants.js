@@ -5,10 +5,14 @@ export const profileInputName = document.querySelector("#profile-name");
 export const profileInputStatus = document.querySelector("#profile-status");
 export const popupAddOpenButton = document.querySelector(".profile__add-btn");
 export const cardsContainer = document.querySelector(".places__cards-list");
+export const editAvatarOpenButton = document.querySelector(
+  ".profile__avatar-edit"
+);
 
 export const popupEdit = ".popup_edit-profile";
 export const popupAddPlace = ".popup_add-place";
 export const popupOpenCard = ".popup_open-card";
+export const popupEditAvatar = ".popup_edit-avatar";
 
 export const formValidators = {};
 
