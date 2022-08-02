@@ -1,6 +1,7 @@
 .profile__avatar-wrapper {
   position: relative;
   width: 120px;
+  height: 120px;
   margin: 0 30px 0 0;
 }
 
