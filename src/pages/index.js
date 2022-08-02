@@ -80,8 +80,13 @@ const profileInfo = new UserInfo({
 });
 
 const handleFormProfileSubmit = (userInfo) => {
-  profileInfo.setUserInfo(userInfo);
-  popupProfile.close();
+  return server
+    .setProfile(userInfo)
+    .then((res) => {
+      profileInfo.setUserInfo(res);
+      popupProfile.close();
+    })
+    .catch((err) => console.log(err));
 };
 
 const popupProfile = new PopupWithForm(popupEdit, handleFormProfileSubmit);
@@ -117,9 +122,9 @@ const activateValidation = () => {
 //LISTENERS
 
 popupEditOpenButton.addEventListener("click", () => {
-  const { profileName, profileStatus } = profileInfo.getUserInfo();
-  profileInputName.value = profileName;
-  profileInputStatus.value = profileStatus;
+  const userInfo = profileInfo.getUserInfo();
+  profileInputName.value = userInfo.name;
+  profileInputStatus.value = userInfo.about;
   formValidators["edit-profile-form"].resetValidation();
   popupProfile.open();
 });

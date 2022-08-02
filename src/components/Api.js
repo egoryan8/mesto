@@ -30,7 +30,7 @@ export default class Api {
         name: obj.name,
         about: obj.about,
       }),
-    }).then(this._handleResponse);
+    }).then(this._handleServerResponse);
     return this._changedProfile;
   }
 
@@ -38,7 +38,7 @@ export default class Api {
     this._like = fetch(`${this._url}/cards/${obj._id}/likes`, {
       method: "PUT",
       headers: this._headers,
-    }).then(this._handleResponse);
+    }).then(this._handleServerResponse);
     return this._like;
   }
 
@@ -46,7 +46,7 @@ export default class Api {
     this._deleteLike = fetch(`${this._url}/cards/${obj._id}/likes`, {
       method: "DELETE",
       headers: this._headers,
-    }).then(this._handleResponse);
+    }).then(this._handleServerResponse);
     return this._deleteLike;
   }
 
@@ -58,7 +58,7 @@ export default class Api {
         name: obj.title,
         link: obj.link,
       }),
-    }).then(this._handleResponse);
+    }).then(this._handleServerResponse);
     return this._addedCard;
   }
 
@@ -66,7 +66,7 @@ export default class Api {
     this._deletedCard = fetch(`${this._url}/cards/${obj._id}`, {
       method: "DELETE",
       headers: this._headers,
-    }).then(this._handleResponse);
+    }).then(this._handleServerResponse);
     return this._deletedCard;
   }
 
@@ -77,7 +77,7 @@ export default class Api {
       body: JSON.stringify({
         avatar: obj.avatar,
       }),
-    }).then(this._handleResponse);
+    }).then(this._handleServerResponse);
     return this._newAvatar;
   }
 }
