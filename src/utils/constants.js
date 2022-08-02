@@ -1,6 +1,7 @@
 export const popupEditOpenButton = document.querySelector(".profile__edit-btn");
 export const profileName = document.querySelector(".profile__name");
 export const profileStatus = document.querySelector(".profile__status");
+export const profileAvatar = document.querySelector(".profile__avatar");
 export const profileInputName = document.querySelector("#profile-name");
 export const profileInputStatus = document.querySelector("#profile-status");
 export const popupAddOpenButton = document.querySelector(".profile__add-btn");

@@ -4,6 +4,7 @@ import PopupWithForm from "../components/PopupWithForm.js";
 import PopupWithImage from "../components/PopupWithImage.js";
 import Section from "../components/Section.js";
 import UserInfo from "../components/UserInfo.js";
+import Api from "../components/Api.js";
 
 import "./index.css";
 
@@ -23,9 +24,17 @@ import {
   formValidators,
   editAvatarOpenButton,
   popupEditAvatar,
+  profileAvatar,
 } from "../utils/constants.js";
 
 //Cards
+const server = new Api({
+  url: "https://mesto.nomoreparties.co/v1/cohort-47",
+  headers: {
+    authorization: "9cd7abe3-5559-4a23-a51d-befd5fe922ed",
+    "Content-Type": "application/json",
+  },
+});
 
 const handleClickToOpenCard = (title, src) => {
   popupImage.open(title, src);
@@ -48,8 +57,6 @@ const cardsSection = new Section(
   cardsContainer
 );
 
-cardsSection.renderItems(initialCards);
-
 const handleFormAddPlaceSubmit = (cardData) => {
   cardsSection.addItem(createCard(cardData));
   popupNewPlace.close();
@@ -69,6 +76,7 @@ popupImage.setEventListeners();
 const profileInfo = new UserInfo({
   profileName: profileName,
   profileStatus: profileStatus,
+  profileAvatar: profileAvatar,
 });
 
 const handleFormProfileSubmit = (userInfo) => {
@@ -79,7 +87,17 @@ const handleFormProfileSubmit = (userInfo) => {
 const popupProfile = new PopupWithForm(popupEdit, handleFormProfileSubmit);
 popupProfile.setEventListeners();
 
-const handleFormAvatarSubmit = () => {};
+const handleFormAvatarSubmit = (obj) => {
+  return server
+    .setAvatar(obj)
+    .then((link) => {
+      profileInfo.setUserInfo(link);
+      popupAvatar.close();
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+};
 
 const popupAvatar = new PopupWithForm(popupEditAvatar, handleFormAvatarSubmit);
 popupAvatar.setEventListeners();
@@ -116,3 +134,13 @@ editAvatarOpenButton.addEventListener("click", () => {
 });
 
 activateValidation();
+
+Promise.all([server.getCards(), server.getProfile()])
+  .then((value) => {
+    console.log(value);
+    cardsSection.renderItems(value[0]);
+    profileInfo.setUserInfo(value[1]);
+  })
+  .catch((err) => {
+    console.log();
+  });
