@@ -23,7 +23,7 @@ export default class Api {
   }
 
   setProfile(obj) {
-    this._changedProfile = fetch(`${this._url}/users/me`, {
+    this._settedProfile = fetch(`${this._url}/users/me`, {
       method: "PATCH",
       headers: this._headers,
       body: JSON.stringify({
@@ -31,7 +31,7 @@ export default class Api {
         about: obj.about,
       }),
     }).then(this._handleServerResponse);
-    return this._changedProfile;
+    return this._settedProfile;
   }
 
   setLike(obj) {
