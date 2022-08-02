@@ -34,6 +34,17 @@ export default class Api {
     return this._settedProfile;
   }
 
+  setAvatar(obj) {
+    this._newAvatar = fetch(`${this._url}/users/me/avatar`, {
+      method: "PATCH",
+      headers: this._headers,
+      body: JSON.stringify({
+        avatar: obj.avatar,
+      }),
+    }).then(this._handleServerResponse);
+    return this._newAvatar;
+  }
+
   setLike(obj) {
     this._like = fetch(`${this._url}/cards/${obj._id}/likes`, {
       method: "PUT",
@@ -68,16 +79,5 @@ export default class Api {
       headers: this._headers,
     }).then(this._handleServerResponse);
     return this._deletedCard;
-  }
-
-  setAvatar(obj) {
-    this._newAvatar = fetch(`${this._url}/users/me/avatar`, {
-      method: "PATCH",
-      headers: this._headers,
-      body: JSON.stringify({
-        avatar: obj.avatar,
-      }),
-    }).then(this._handleServerResponse);
-    return this._newAvatar;
   }
 }
