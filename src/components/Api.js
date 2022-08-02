@@ -45,7 +45,7 @@ export default class Api {
     return this._newAvatar;
   }
 
-  setLike(obj) {
+  addLike(obj) {
     this._like = fetch(`${this._url}/cards/${obj._id}/likes`, {
       method: "PUT",
       headers: this._headers,

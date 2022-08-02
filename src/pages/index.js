@@ -40,10 +40,34 @@ const handleClickToOpenCard = (title, src) => {
 };
 
 const createCard = (cardData) => {
-  const card = new Card(cardData, "#card-template", handleClickToOpenCard);
+  const card = new Card(
+    {
+      name: cardData.name,
+      link: cardData.link,
+      likes: cardData.likes,
+      userId: userId,
+      ownerId: cardData.owner._id,
+      cardId: cardData._id,
+    },
+    "#card-template",
+    handleClickToOpenCard,
+    () => popupConfirm.open(card),
+    () => {
+      return server.addLike(cardData).then((res) => {
+        console.log(res);
+        card.setLikesCount(res);
+        card.addLike();
+      });
+    },
+    () => {
+      return server.deleteLike(cardData).then((res) => {
+        card.setLikesCount(res);
+        card.removeLike();
+      });
+    }
+  );
 
   const cardElement = card.generateCard();
-
   return cardElement;
 };
 
@@ -118,6 +142,18 @@ const activateValidation = () => {
   });
 };
 
+let userId;
+
+Promise.all([server.getCards(), server.getProfile()])
+  .then((value) => {
+    userId = value[1]._id;
+    cardsSection.renderItems(value[0]);
+    profileInfo.setUserInfo(value[1]);
+  })
+  .catch((err) => {
+    console.log(err);
+  });
+
 //LISTENERS
 
 popupEditOpenButton.addEventListener("click", () => {
@@ -138,13 +174,3 @@ editAvatarOpenButton.addEventListener("click", () => {
 });
 
 activateValidation();
-
-Promise.all([server.getCards(), server.getProfile()])
-  .then((value) => {
-    console.log(value);
-    cardsSection.renderItems(value[0]);
-    profileInfo.setUserInfo(value[1]);
-  })
-  .catch((err) => {
-    console.log();
-  });
