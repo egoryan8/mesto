@@ -9,7 +9,6 @@ import Api from "../components/Api.js";
 import "./index.css";
 
 import {
-  initialCards,
   config,
   popupEdit,
   popupEditOpenButton,
