@@ -28,7 +28,6 @@ import {
   popupConfirmDelete,
 } from "../utils/constants.js";
 
-//Cards
 const api = new Api({
   url: "https://mesto.nomoreparties.co/v1/cohort-47",
   headers: {
@@ -56,7 +55,6 @@ const createCard = (cardData) => {
     () => popupConfirm.open(card),
     () => {
       return api.addLike(cardData).then((res) => {
-        console.log(res);
         card.setLikesCount(res);
         card.addLike();
       });
@@ -103,8 +101,6 @@ popupNewPlace.setEventListeners();
 
 const popupImage = new PopupWithImage(popupOpenCard);
 popupImage.setEventListeners();
-
-//Profile
 
 const profileInfo = new UserInfo({
   profileName: profileName,
@@ -169,6 +165,8 @@ const activateValidation = () => {
     validator.enableValidation();
   });
 };
+
+// Promise all
 
 let userId;
 

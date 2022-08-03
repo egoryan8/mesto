@@ -5,5 +5,9 @@
   object-position: center;
   display: block;
   cursor: pointer;
+  transition: transform 0.4s;
 }
 
+.card__image:hover {
+  transform: scale(1.15);
+}

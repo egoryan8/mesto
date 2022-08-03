@@ -1,5 +1,6 @@
 .card__like-btn_active {
   background-image: url(../../../../images/like-active.svg);
   transform: scale(1.2);
-  transition: .5s cubic-bezier(0.82, 1.16, 1, 2.83);
+  transition: 0.5s cubic-bezier(0.82, 1.16, 1, 2.83);
+  color: rgb(172, 10, 10);
 }
