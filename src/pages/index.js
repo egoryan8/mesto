@@ -83,6 +83,7 @@ const cardsSection = new Section(
 );
 
 const handleFormAddPlaceSubmit = (cardData) => {
+  popupNewPlace.handleButtonText(true);
   return api
     .addCard(cardData)
     .then((card) => {
@@ -112,6 +113,7 @@ const profileInfo = new UserInfo({
 });
 
 const handleFormProfileSubmit = (userInfo) => {
+  popupProfile.handleButtonText(true);
   return api
     .setProfile(userInfo)
     .then((res) => {
@@ -125,6 +127,7 @@ const popupProfile = new PopupWithForm(popupEdit, handleFormProfileSubmit);
 popupProfile.setEventListeners();
 
 const handleFormAvatarSubmit = (obj) => {
+  popupAvatar.handleButtonText(true);
   return api
     .setAvatar(obj)
     .then((link) => {
@@ -186,16 +189,19 @@ popupEditOpenButton.addEventListener("click", () => {
   profileInputName.value = userInfo.name;
   profileInputStatus.value = userInfo.about;
   formValidators["edit-profile-form"].resetValidation();
+  popupProfile.handleButtonText(false);
   popupProfile.open();
 });
 
 popupAddOpenButton.addEventListener("click", () => {
   formValidators["add-place-form"].resetValidation();
+  popupNewPlace.handleButtonText(false);
   popupNewPlace.open();
 });
 
 editAvatarOpenButton.addEventListener("click", () => {
   formValidators["edit-avatar-form"].resetValidation();
+  popupAvatar.handleButtonText(false);
   popupAvatar.open();
 });
 
