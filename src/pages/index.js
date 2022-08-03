@@ -26,6 +26,7 @@ import {
   popupEditAvatar,
   profileAvatar,
   popupConfirmDelete,
+  cardTemplate,
 } from "../utils/constants.js";
 
 const api = new Api({
@@ -50,20 +51,26 @@ const createCard = (cardData) => {
       ownerId: cardData.owner._id,
       cardId: cardData._id,
     },
-    "#card-template",
+    cardTemplate,
     handleClickToOpenCard,
     () => popupConfirm.open(card),
     () => {
-      return api.addLike(cardData).then((res) => {
-        card.setLikesCount(res);
-        card.addLike();
-      });
+      return api
+        .addLike(cardData)
+        .then((res) => {
+          card.setLikesCount(res);
+          card.addLike();
+        })
+        .catch((err) => console.log(err));
     },
     () => {
-      return api.deleteLike(cardData).then((res) => {
-        card.setLikesCount(res);
-        card.removeLike();
-      });
+      return api
+        .deleteLike(cardData)
+        .then((res) => {
+          card.setLikesCount(res);
+          card.removeLike();
+        })
+        .catch((err) => console.log(err));
     }
   );
 
