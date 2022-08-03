@@ -29,7 +29,7 @@ import {
 } from "../utils/constants.js";
 
 //Cards
-const server = new Api({
+const api = new Api({
   url: "https://mesto.nomoreparties.co/v1/cohort-47",
   headers: {
     authorization: "9cd7abe3-5559-4a23-a51d-befd5fe922ed",
@@ -55,14 +55,14 @@ const createCard = (cardData) => {
     handleClickToOpenCard,
     () => popupConfirm.open(card),
     () => {
-      return server.addLike(cardData).then((res) => {
+      return api.addLike(cardData).then((res) => {
         console.log(res);
         card.setLikesCount(res);
         card.addLike();
       });
     },
     () => {
-      return server.deleteLike(cardData).then((res) => {
+      return api.deleteLike(cardData).then((res) => {
         card.setLikesCount(res);
         card.removeLike();
       });
@@ -83,7 +83,7 @@ const cardsSection = new Section(
 );
 
 const handleFormAddPlaceSubmit = (cardData) => {
-  return server
+  return api
     .addCard(cardData)
     .then((card) => {
       cardsSection.addItem(createCard(card));
@@ -112,7 +112,7 @@ const profileInfo = new UserInfo({
 });
 
 const handleFormProfileSubmit = (userInfo) => {
-  return server
+  return api
     .setProfile(userInfo)
     .then((res) => {
       profileInfo.setUserInfo(res);
@@ -125,7 +125,7 @@ const popupProfile = new PopupWithForm(popupEdit, handleFormProfileSubmit);
 popupProfile.setEventListeners();
 
 const handleFormAvatarSubmit = (obj) => {
-  return server
+  return api
     .setAvatar(obj)
     .then((link) => {
       profileInfo.setUserInfo(link);
@@ -140,8 +140,8 @@ const popupAvatar = new PopupWithForm(popupEditAvatar, handleFormAvatarSubmit);
 popupAvatar.setEventListeners();
 
 const handlePopupConfirmSubmit = (card) => {
-  return server
-    .deleteCard(card._id)
+  return api
+    .deleteCard(card._cardId)
     .then(() => {
       card.deleteCard();
       popupConfirm.close();
@@ -169,7 +169,7 @@ const activateValidation = () => {
 
 let userId;
 
-Promise.all([server.getCards(), server.getProfile()])
+Promise.all([api.getCards(), api.getProfile()])
   .then((value) => {
     userId = value[1]._id;
     cardsSection.renderItems(value[0]);
@@ -195,6 +195,7 @@ popupAddOpenButton.addEventListener("click", () => {
 });
 
 editAvatarOpenButton.addEventListener("click", () => {
+  formValidators["edit-avatar-form"].resetValidation();
   popupAvatar.open();
 });
 
