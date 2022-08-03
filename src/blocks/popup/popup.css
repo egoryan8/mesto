@@ -9,5 +9,6 @@
   align-items: center;
   visibility: hidden;
   opacity: 0;
-  transition: visibility .7s, opacity .7s;
+  transition: visibility 0.7s, opacity 0.7s;
+  z-index: 101;
 }
