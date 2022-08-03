@@ -44,14 +44,13 @@ export default class Card {
     this._likesCount.textContent = `${this._likes.length}`;
 
     this._setEventListeners();
+    this._handleLikeState();
+    this.handleDeleteButtonState();
 
     return this._element;
   }
 
   _setEventListeners() {
-    this._likeButton = this._element.querySelector(".card__like-btn");
-    this._deleteButton = this._element.querySelector(".card__delete-btn");
-
     this._imageElement.addEventListener("click", () => {
       this._handleClickToOpenCard(this._cardTitle, this._cardImage);
     });

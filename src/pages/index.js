@@ -133,16 +133,20 @@ const popupAvatar = new PopupWithForm(popupEditAvatar, handleFormAvatarSubmit);
 popupAvatar.setEventListeners();
 
 const handlePopupConfirmSubmit = (card) => {
-  return server.deleteCard(card._id).then(() => {
-    card.deleteCard();
-    popupConfirm.close();
-  });
+  return server
+    .deleteCard(card._id)
+    .then(() => {
+      card.deleteCard();
+      popupConfirm.close();
+    })
+    .catch((err) => console.log(err));
 };
 
 const popupConfirm = new PopupWithConfirm(
   popupConfirmDelete,
   handlePopupConfirmSubmit
 );
+popupConfirm.setEventListeners();
 
 // Enable Validation
 
