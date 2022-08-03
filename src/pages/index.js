@@ -172,7 +172,7 @@ let userId;
 Promise.all([api.getCards(), api.getProfile()])
   .then((value) => {
     userId = value[1]._id;
-    cardsSection.renderItems(value[0]);
+    cardsSection.renderItems(value[0].reverse());
     profileInfo.setUserInfo(value[1]);
   })
   .catch((err) => {
