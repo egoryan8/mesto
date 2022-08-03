@@ -83,8 +83,15 @@ const cardsSection = new Section(
 );
 
 const handleFormAddPlaceSubmit = (cardData) => {
-  cardsSection.addItem(createCard(cardData));
-  popupNewPlace.close();
+  return server
+    .addCard(cardData)
+    .then((card) => {
+      cardsSection.addItem(createCard(card));
+      popupNewPlace.close();
+    })
+    .catch((err) => {
+      console.log(err);
+    });
 };
 
 const popupNewPlace = new PopupWithForm(
