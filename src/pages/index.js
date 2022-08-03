@@ -5,6 +5,7 @@ import PopupWithImage from "../components/PopupWithImage.js";
 import Section from "../components/Section.js";
 import UserInfo from "../components/UserInfo.js";
 import Api from "../components/Api.js";
+import PopupWithConfirm from "../components/PopupWithConfirm.js";
 
 import "./index.css";
 
@@ -24,6 +25,7 @@ import {
   editAvatarOpenButton,
   popupEditAvatar,
   profileAvatar,
+  popupConfirmDelete,
 } from "../utils/constants.js";
 
 //Cards
@@ -129,6 +131,18 @@ const handleFormAvatarSubmit = (obj) => {
 
 const popupAvatar = new PopupWithForm(popupEditAvatar, handleFormAvatarSubmit);
 popupAvatar.setEventListeners();
+
+const handlePopupConfirmSubmit = (card) => {
+  return server.deleteCard(card._id).then(() => {
+    card.deleteCard();
+    popupConfirm.close();
+  });
+};
+
+const popupConfirm = new PopupWithConfirm(
+  popupConfirmDelete,
+  handlePopupConfirmSubmit
+);
 
 // Enable Validation
 

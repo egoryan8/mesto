@@ -67,16 +67,7 @@ export default class Card {
     });
   }
 
-  _likeCard() {
-    this._likeButton.classList.toggle("card__like-btn_active");
-  }
-
-  _deleteCard() {
-    this._element.remove();
-    this._element = null;
-  }
-
-  isOwner() {
+  handleDeleteButtonState() {
     if (this._userId !== this._ownerId) {
       this._deleteButton.remove();
       this._deleteButton = null;

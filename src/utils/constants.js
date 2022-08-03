@@ -14,6 +14,7 @@ export const popupEdit = ".popup_edit-profile";
 export const popupAddPlace = ".popup_add-place";
 export const popupOpenCard = ".popup_open-card";
 export const popupEditAvatar = ".popup_edit-avatar";
+export const popupConfirmDelete = ".popup_you-sure";
 
 export const formValidators = {};
 

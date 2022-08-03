@@ -3,6 +3,7 @@ import Popup from "./Popup.js";
 export default class PopupWithConfirm extends Popup {
   constructor(popupSelector, submitHandler) {
     super(popupSelector);
+    this._button = document.querySelector("#unical");
 
     this._submitHandler = submitHandler;
   }
@@ -10,8 +11,8 @@ export default class PopupWithConfirm extends Popup {
   setEventListeners() {
     super.setEventListeners();
 
-    this._form.addEventListener("submit", (evt) => {
-      evt.preventDefault();
+    this._button.addEventListener("click", () => {
+      console.log("qfqfqfq");
       this._submitHandler;
     });
   }

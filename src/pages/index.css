@@ -53,3 +53,5 @@
 
 @import url(../blocks/profile/__avatar-edit/profile__avatar-edit.css);
 @import url(../blocks/profile/__avatar-wrapper/profile__avatar-wrapper.css);
+@import url(../blocks/popup/_edit-avatar/popup_edit-avatar.css);
+@import url(../blocks/popup/_you-sure/popup_you-sure.css);
